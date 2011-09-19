@@ -20,8 +20,8 @@ Namespace XML
         ''' <returns></returns>
         ''' <remarks></remarks>
         ''' <exception cref="XmlException">Si no existe el elemento arroja excepción</exception>
-        Protected Shared Function getSingleXMLElement(ByVal tagName As String) As XmlElement
-            Return getXml().GetElementsByTagName(tagName)(0)
+        Protected Shared Function getSingleXMLElement(ByVal tagName As String, Optional ByVal index As Integer = 0) As XmlElement
+            Return getXml().GetElementsByTagName(tagName)(index)
         End Function
 
         ''' <summary>
