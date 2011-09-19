@@ -1,0 +1,13 @@
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\TAGS\GeoServices v2.0\Ejemplos\VB .Net\EjemploGeoService\EjemploGeoService\bin\Release\Config.xml
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\TAGS\GeoServices v2.0\Ejemplos\VB .Net\EjemploGeoService\EjemploGeoService\bin\Release\EjemploGeoService.exe
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\TAGS\GeoServices v2.0\Ejemplos\VB .Net\EjemploGeoService\EjemploGeoService\bin\Release\EjemploGeoService.pdb
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\TAGS\GeoServices v2.0\Ejemplos\VB .Net\EjemploGeoService\EjemploGeoService\bin\Release\EjemploGeoService.xml
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\TAGS\GeoServices v2.0\Ejemplos\VB .Net\EjemploGeoService\EjemploGeoService\bin\Release\GeoServices.dll
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\TAGS\GeoServices v2.0\Ejemplos\VB .Net\EjemploGeoService\EjemploGeoService\bin\Release\GeoServices.xml
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\TAGS\GeoServices v2.0\Ejemplos\VB .Net\EjemploGeoService\EjemploGeoService\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\TAGS\GeoServices v2.0\Ejemplos\VB .Net\EjemploGeoService\EjemploGeoService\obj\x86\Release\EjemploGeoService.Resources.resources
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\TAGS\GeoServices v2.0\Ejemplos\VB .Net\EjemploGeoService\EjemploGeoService\obj\x86\Release\GenerateResource-ResGen.read.1.tlog
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\TAGS\GeoServices v2.0\Ejemplos\VB .Net\EjemploGeoService\EjemploGeoService\obj\x86\Release\GenerateResource-ResGen.write.1.tlog
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\TAGS\GeoServices v2.0\Ejemplos\VB .Net\EjemploGeoService\EjemploGeoService\obj\x86\Release\EjemploGeoService.exe
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\TAGS\GeoServices v2.0\Ejemplos\VB .Net\EjemploGeoService\EjemploGeoService\obj\x86\Release\EjemploGeoService.xml
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\TAGS\GeoServices v2.0\Ejemplos\VB .Net\EjemploGeoService\EjemploGeoService\obj\x86\Release\EjemploGeoService.pdb

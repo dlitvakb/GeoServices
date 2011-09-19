@@ -1,0 +1,15 @@
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\GeoServicesEncryptionManager\bin\Release\Config.xml
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\GeoServicesEncryptionManager\bin\Release\GeoServicesEncryptionManager.exe
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\GeoServicesEncryptionManager\bin\Release\GeoServicesEncryptionManager.pdb
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\GeoServicesEncryptionManager\bin\Release\GeoServicesEncryptionManager.xml
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\GeoServicesEncryptionManager\bin\Release\GeoServices.dll
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\GeoServicesEncryptionManager\bin\Release\GeoServices.pdb
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\GeoServicesEncryptionManager\bin\Release\GeoServices.xml
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\GeoServicesEncryptionManager\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\GeoServicesEncryptionManager\obj\x86\Release\GeoServicesEncryptionManager.Encryptor.resources
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\GeoServicesEncryptionManager\obj\x86\Release\GeoServicesEncryptionManager.Resources.resources
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\GeoServicesEncryptionManager\obj\x86\Release\GenerateResource-ResGen.read.1.tlog
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\GeoServicesEncryptionManager\obj\x86\Release\GenerateResource-ResGen.write.1.tlog
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\GeoServicesEncryptionManager\obj\x86\Release\GeoServicesEncryptionManager.exe
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\GeoServicesEncryptionManager\obj\x86\Release\GeoServicesEncryptionManager.xml
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\GeoServicesEncryptionManager\obj\x86\Release\GeoServicesEncryptionManager.pdb

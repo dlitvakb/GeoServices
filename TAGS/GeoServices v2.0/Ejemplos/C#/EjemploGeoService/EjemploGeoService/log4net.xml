@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<log4net >
+  <!-- Modificar el nombre en logger -->
+  <logger name="EjemploGeoService">
+    <level value="ALL" />
+    <appender-ref ref="Windowsapplog" />
+  </logger>
+  <appender name="Windowsapplog" type="log4net.Appender.RollingFileAppender" >
+    <!-- Modificar el nombre del archivo destino -->
+    <param name="File" value="EjemploGeoService.log" />
+    <param name="AppendToFile" value="true" />
+    <rollingStyle value="Size" />
+    <maxSizeRollBackups value="10" />
+    <maximumFileSize value="10MB" />
+    <staticLogFileName value="false" />
+    <lockingModel type="log4net.Appender.FileAppender+MinimalLock" />
+    <layout type="log4net.Layout.PatternLayout">
+      <param name="ConversionPattern" value="[%date{HH:mm:ss,fff}]-%5p: %-m %n"/>
+    </layout>
+  </appender>
+  <root>
+    <level value="ALL" />
+    <appender-ref ref="ConsoleAppender" />
+  </root>
+</log4net>

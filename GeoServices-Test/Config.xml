@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<config>
+  <!-- 
+  Aca se debe especificar el nombre de la aplicacion 
+  Esto genera el nombre del logger y del EventViewer
+  -->
+  <application name="Test" />  
+
+  <schedule>
+    <!-- Formato 24Hs  HH:MM -->
+    <time start="12:00" />
+    <time start="00:00" />
+  </schedule>
+
+  <!-- Cualquier adicional debe estar contenido aca y debe generarse una clase que herede de XMLGetter para obtener los datos-->
+  <!-- 
+  <rootejemplo>
+    <nodoejemplo>ejemplo</nodoejemplo>  
+  </rootejemplo>
+  -->
+  
+  <!-- La informacion del SDE se coloca debajo -->
+  <sdeconnections>
+    <connection username="sde" password="7QOzDseajRSMp1sM1iBPCQ==" server="192.168.1.32" instance="5151" database="" sdeversion="SDE.DEFAULT" />
+    <connection username="ah_sde" password="U11wXuNobFc3DY7sppCBDQ==" server="192.168.1.32" instance="5151" database="" sdeversion="SDE.DEFAULT" />
+  </sdeconnections>
+</config>

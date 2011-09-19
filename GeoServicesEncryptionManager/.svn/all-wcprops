@@ -1,0 +1,39 @@
+K 26
+svn:wc:ra_dav:activity-url
+V 29
+/svn/ConsultoresGIS/!svn/act/
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/ConsultoresGIS/!svn/ver/332/ConsultoresGIS/ConsultoresGISGeoServiceBase/GeoServicesEncryptionManager
+END
+App.config
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/ConsultoresGIS/!svn/ver/317/ConsultoresGIS/ConsultoresGISGeoServiceBase/GeoServicesEncryptionManager/App.config
+END
+Encryptor.resx
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/ConsultoresGIS/!svn/ver/317/ConsultoresGIS/ConsultoresGISGeoServiceBase/GeoServicesEncryptionManager/Encryptor.resx
+END
+GeoServicesEncryptionManager.vbproj
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/ConsultoresGIS/!svn/ver/317/ConsultoresGIS/ConsultoresGISGeoServiceBase/GeoServicesEncryptionManager/GeoServicesEncryptionManager.vbproj
+END
+Encryptor.Designer.vb
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/ConsultoresGIS/!svn/ver/330/ConsultoresGIS/ConsultoresGISGeoServiceBase/GeoServicesEncryptionManager/Encryptor.Designer.vb
+END
+Encryptor.vb
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/ConsultoresGIS/!svn/ver/332/ConsultoresGIS/ConsultoresGISGeoServiceBase/GeoServicesEncryptionManager/Encryptor.vb
+END

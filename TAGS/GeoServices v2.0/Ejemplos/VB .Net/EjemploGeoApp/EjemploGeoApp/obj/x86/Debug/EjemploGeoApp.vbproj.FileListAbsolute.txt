@@ -1,0 +1,13 @@
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\TAGS\GeoServices v2.0\Ejemplos\VB .Net\EjemploGeoApp\EjemploGeoApp\bin\Debug\Config.xml
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\TAGS\GeoServices v2.0\Ejemplos\VB .Net\EjemploGeoApp\EjemploGeoApp\bin\Debug\EjemploGeoApp.exe
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\TAGS\GeoServices v2.0\Ejemplos\VB .Net\EjemploGeoApp\EjemploGeoApp\bin\Debug\EjemploGeoApp.pdb
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\TAGS\GeoServices v2.0\Ejemplos\VB .Net\EjemploGeoApp\EjemploGeoApp\bin\Debug\EjemploGeoApp.xml
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\TAGS\GeoServices v2.0\Ejemplos\VB .Net\EjemploGeoApp\EjemploGeoApp\bin\Debug\GeoServices.dll
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\TAGS\GeoServices v2.0\Ejemplos\VB .Net\EjemploGeoApp\EjemploGeoApp\bin\Debug\GeoServices.xml
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\TAGS\GeoServices v2.0\Ejemplos\VB .Net\EjemploGeoApp\EjemploGeoApp\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\TAGS\GeoServices v2.0\Ejemplos\VB .Net\EjemploGeoApp\EjemploGeoApp\obj\x86\Debug\EjemploGeoApp.Resources.resources
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\TAGS\GeoServices v2.0\Ejemplos\VB .Net\EjemploGeoApp\EjemploGeoApp\obj\x86\Debug\GenerateResource-ResGen.read.1.tlog
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\TAGS\GeoServices v2.0\Ejemplos\VB .Net\EjemploGeoApp\EjemploGeoApp\obj\x86\Debug\GenerateResource-ResGen.write.1.tlog
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\TAGS\GeoServices v2.0\Ejemplos\VB .Net\EjemploGeoApp\EjemploGeoApp\obj\x86\Debug\EjemploGeoApp.exe
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\TAGS\GeoServices v2.0\Ejemplos\VB .Net\EjemploGeoApp\EjemploGeoApp\obj\x86\Debug\EjemploGeoApp.xml
+C:\Documents and Settings\usuario\Escritorio\ConsultoresGIS\ConsultoresGISGeoServiceBase\TAGS\GeoServices v2.0\Ejemplos\VB .Net\EjemploGeoApp\EjemploGeoApp\obj\x86\Debug\EjemploGeoApp.pdb
