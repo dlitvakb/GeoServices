@@ -6,12 +6,3 @@ GeoServices-Test/obj
 *.suo
 *.testsettings
 TestResults/
-.svn
-*/.svn
-*/*/.svn
-*/*/*/.svn
-*/*/*/*/.svn
-*/*/*/*/*/.svn
-*/*/*/*/*/*/.svn
-*/*/*/*/*/*/*/.svn
-*/*/*/*/*/*/*/*/.svn
