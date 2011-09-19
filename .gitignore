@@ -6,5 +6,4 @@ GeoServices-Test/bin
 GeoServices-Test/obj
 *.user
 *.suo
-*.testsettings
 TestResults/
