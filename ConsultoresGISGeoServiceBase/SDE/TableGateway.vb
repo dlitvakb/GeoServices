@@ -28,7 +28,7 @@ Namespace SDE
             Return "Tabla"
         End Function
 
-        Protected Overrides Function GetPruralName() As String
+        Protected Overrides Function GetPluralName() As String
             Return "Tablas"
         End Function
     End Class

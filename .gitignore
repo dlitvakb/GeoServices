@@ -1,5 +1,7 @@
 ConsultoresGISGeoServiceBase/bin
 ConsultoresGISGeoServiceBase/obj
+GeoServicesEncryptionManager/bin
+GeoServicesEncryptionManager/obj
 GeoServices-Test/bin
 GeoServices-Test/obj
 *.user

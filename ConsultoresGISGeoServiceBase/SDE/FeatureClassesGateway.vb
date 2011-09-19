@@ -128,7 +128,7 @@ Namespace SDE
             Return "Feature Class"
         End Function
 
-        Protected Overrides Function GetPruralName() As String
+        Protected Overrides Function GetPluralName() As String
             Return "Feature Classes"
         End Function
 

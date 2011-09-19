@@ -37,7 +37,7 @@ Public MustInherit Class SDEDataGateway(Of T As {Class})
     ''' </summary>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Protected MustOverride Function GetPruralName() As String
+    Protected MustOverride Function GetPluralName() As String
 
     ''' <summary>
     ''' Permite obtener elementos del SDE en base a una lista de nombres
@@ -60,7 +60,7 @@ Public MustInherit Class SDEDataGateway(Of T As {Class})
             Next
         Next
 
-        If result.Count <> names.Length AndAlso Not GetResultsAnyway Then Throw New DataException("No se encontraron " & Me.GetPruralName() & " para los nombres especificados")
+        If result.Count <> names.Length AndAlso Not GetResultsAnyway Then Throw New DataException("No se encontraron " & Me.GetPluralName() & " para los nombres especificados")
 
         Return result
     End Function
