@@ -1,8 +1,0 @@
-K 10
-svn:ignore
-V 37
-*.suo
-Local.testsettings
-TestResults
-
-END
