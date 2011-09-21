@@ -6,11 +6,11 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{9DCB6A08-1AED-4B85-8781-CDA4413F8DAF}</ProjectGuid>
+    <ProjectGuid>{EE24C9D9-5479-4130-9ABF-A2A31C024A2B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>GeoServicesEncryptionManager.My.MyApplication</StartupObject>
-    <RootNamespace>GeoServicesEncryptionManager</RootNamespace>
-    <AssemblyName>GeoServicesEncryptionManager</AssemblyName>
+    <StartupObject>GeoServicesConnectionChecker.My.MyApplication</StartupObject>
+    <RootNamespace>GeoServicesConnectionChecker</RootNamespace>
+    <AssemblyName>GeoServicesConnectionChecker</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
@@ -22,7 +22,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>GeoServicesEncryptionManager.xml</DocumentationFile>
+    <DocumentationFile>GeoServicesConnectionChecker.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
@@ -32,7 +32,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>GeoServicesEncryptionManager.xml</DocumentationFile>
+    <DocumentationFile>GeoServicesConnectionChecker.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -48,6 +48,14 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ESRI.ArcGIS.Geodatabase, Version=10.0.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="ESRI.ArcGIS.System, Version=10.0.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -71,11 +79,11 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Encryptor.vb">
+    <Compile Include="ConnectionChecker.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Encryptor.Designer.vb">
-      <DependentUpon>Encryptor.vb</DependentUpon>
+    <Compile Include="ConnectionChecker.Designer.vb">
+      <DependentUpon>ConnectionChecker.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -95,8 +103,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Encryptor.resx">
-      <DependentUpon>Encryptor.vb</DependentUpon>
+    <EmbeddedResource Include="ConnectionChecker.resx">
+      <DependentUpon>ConnectionChecker.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -117,6 +125,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GeoServicesEncryptionManager\GeoServicesEncryptionManager.vbproj">
+      <Project>{9DCB6A08-1AED-4B85-8781-CDA4413F8DAF}</Project>
+      <Name>GeoServicesEncryptionManager</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GeoServices\GeoServices.vbproj">
       <Project>{38DF12BC-28EC-40AE-9B04-D4B97038B809}</Project>
       <Name>GeoServices</Name>

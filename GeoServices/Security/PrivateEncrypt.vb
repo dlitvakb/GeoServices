@@ -8,7 +8,11 @@ Imports System.Security.Cryptography
 
 Namespace Security
     Class PrivateEncrypt
-        Private ReadOnly PrivateKey As String = "VVRJNWRXTXpWbk5rUnpsNVdsaE9TRk5XVGtaaWJVNTVaVmhDTUdGWE9YVlZNbFo1Wkcxc2FscFJQVDA9"
+        Private ReadOnly Property PrivateKey As String
+            Get
+                Return "VVRJNWRXTXpWbk5rUnpsNVdsaE9TRk5XVGtaaWJVNTVaVmhDTUdGWE9YVlZNbFo1Wkcxc2FscFJQVDA9"
+            End Get
+        End Property
 
         Public Function Encrypt(ByVal input As String) As String
             Dim AES As New System.Security.Cryptography.RijndaelManaged

@@ -14,6 +14,8 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "GeoServicesEncryptionManage
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "GeoServices", "GeoServices\GeoServices.vbproj", "{38DF12BC-28EC-40AE-9B04-D4B97038B809}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "GeoServicesConnectionChecker", "GeoServicesConnectionChecker\GeoServicesConnectionChecker.vbproj", "{EE24C9D9-5479-4130-9ABF-A2A31C024A2B}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = GeoServices.vsmdi
@@ -57,6 +59,16 @@ Global
 		{38DF12BC-28EC-40AE-9B04-D4B97038B809}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{38DF12BC-28EC-40AE-9B04-D4B97038B809}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{38DF12BC-28EC-40AE-9B04-D4B97038B809}.Release|x86.ActiveCfg = Release|Any CPU
+		{EE24C9D9-5479-4130-9ABF-A2A31C024A2B}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{EE24C9D9-5479-4130-9ABF-A2A31C024A2B}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{EE24C9D9-5479-4130-9ABF-A2A31C024A2B}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{EE24C9D9-5479-4130-9ABF-A2A31C024A2B}.Debug|x86.ActiveCfg = Debug|x86
+		{EE24C9D9-5479-4130-9ABF-A2A31C024A2B}.Debug|x86.Build.0 = Debug|x86
+		{EE24C9D9-5479-4130-9ABF-A2A31C024A2B}.Release|Any CPU.ActiveCfg = Release|x86
+		{EE24C9D9-5479-4130-9ABF-A2A31C024A2B}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{EE24C9D9-5479-4130-9ABF-A2A31C024A2B}.Release|Mixed Platforms.Build.0 = Release|x86
+		{EE24C9D9-5479-4130-9ABF-A2A31C024A2B}.Release|x86.ActiveCfg = Release|x86
+		{EE24C9D9-5479-4130-9ABF-A2A31C024A2B}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
