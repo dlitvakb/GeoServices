@@ -2,6 +2,8 @@ GeoServices/bin
 GeoServices/obj
 GeoServicesEncryptionManager/bin
 GeoServicesEncryptionManager/obj
+GeoServicesConnectionChecker/bin
+GeoServicesConnectionChecker/obj
 GeoServices-Test/bin
 GeoServices-Test/obj
 *.user
