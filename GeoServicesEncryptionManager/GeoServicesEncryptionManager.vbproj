@@ -116,12 +116,6 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ConsultoresGISGeoServiceBase\GeoServices.vbproj">
-      <Project>{38DF12BC-28EC-40AE-9B04-D4B97038B809}</Project>
-      <Name>GeoServices</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
