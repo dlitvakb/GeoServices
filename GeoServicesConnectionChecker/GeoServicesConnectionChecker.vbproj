@@ -125,13 +125,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GeoServicesEncryptionManager\GeoServicesEncryptionManager.vbproj">
-      <Project>{9DCB6A08-1AED-4B85-8781-CDA4413F8DAF}</Project>
-      <Name>GeoServicesEncryptionManager</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GeoServices\GeoServices.vbproj">
+    <ProjectReference Include="..\..\..\ConsultoresGIS\ConsultoresGISGeoServiceBase\ConsultoresGISGeoServiceBase\GeoServices.vbproj">
       <Project>{38DF12BC-28EC-40AE-9B04-D4B97038B809}</Project>
       <Name>GeoServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ConsultoresGIS\ConsultoresGISGeoServiceBase\GeoServicesEncryptionManager\GeoServicesEncryptionManager.vbproj">
+      <Project>{9DCB6A08-1AED-4B85-8781-CDA4413F8DAF}</Project>
+      <Name>GeoServicesEncryptionManager</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

@@ -12,6 +12,8 @@ Namespace SDE
         Private Property Version As String
 
         Public Sub New(ByVal username As String, ByVal passwordEncriptado As String, ByVal server As String, ByVal instance As String, ByVal database As String, ByVal version As String)
+            If passwordEncriptado = "" Then Throw New DataException("El password no puede ser vacío")
+
             Me.Username = username
             Me.Password = passwordEncriptado
             Me.Server = server
