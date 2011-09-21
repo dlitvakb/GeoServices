@@ -10,7 +10,7 @@ Namespace Security
     Class PrivateEncrypt
         Private ReadOnly Property PrivateKey As String
             Get
-                Return "VVRJNWRXTXpWbk5rUnpsNVdsaE9TRk5XVGtaaWJVNTVaVmhDTUdGWE9YVlZNbFo1Wkcxc2FscFJQVDA9"
+                Return Convert.ToBase64String(System.Text.ASCIIEncoding.ASCII.GetBytes(System.Environment.MachineName & "VVRJNWRXTXpWbk5rUnpsNVdsaE9TRk5XVGtaaWJVNTVaVmhDTUdGWE9YVlZNbFo1Wkcxc2FscFJQVDA9"))
             End Get
         End Property
 

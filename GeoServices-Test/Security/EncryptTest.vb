@@ -42,7 +42,7 @@ Public Class EncryptTest
 
     <TestMethod()>
     Public Sub EncryptCorrecto()
-        Assert.IsTrue(New GeoServices.Security.Encrypt().Encrypt("Hola") = "m+fmPB18a4rH/8v95K4rfA==")
+        Assert.IsTrue(New GeoServices.Security.Encrypt().Encrypt("Hola") = "BwQA9ave1MBlQR8b8pP2rA==")
     End Sub
 
 End Class
