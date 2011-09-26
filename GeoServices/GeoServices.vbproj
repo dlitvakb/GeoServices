@@ -91,6 +91,7 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SDE\EditingWorkspace.vb" />
     <Compile Include="SDE\SDEDataGateway.vb" />
     <Compile Include="SDE\WorkspaceConnection.vb" />
     <Compile Include="Logger\FileEventLogger.vb" />
