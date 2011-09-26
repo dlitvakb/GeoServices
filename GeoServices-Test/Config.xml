@@ -22,6 +22,6 @@
   <!-- La informacion del SDE se coloca debajo -->
   <sdeconnections>
     <connection username="sde" password="6V9+llAOn67jFVgzxN/Sbg==" server="192.168.1.32" instance="5151" database="" sdeversion="SDE.DEFAULT" />
-    <connection username="ah_sde" password="U11wXuNobFc3DY7sppCBDQ==" server="192.168.1.32" instance="5151" database="" sdeversion="SDE.DEFAULT" />
+    <connection username="ah_sde" password="KDU4RjO3ylRwnaoFh1dPoQ==" server="192.168.1.32" instance="5151" database="" sdeversion="SDE.DEFAULT" />
   </sdeconnections>
 </config>

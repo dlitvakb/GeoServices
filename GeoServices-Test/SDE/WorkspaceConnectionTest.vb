@@ -46,7 +46,7 @@ Public Class WorkspaceConnectionTest
 
     <TestMethod()>
     Public Sub LaConexionEsValida()
-        Assert.IsTrue(Not New GeoServices.SDE.WorkspaceConnection("sde", "7QOzDseajRSMp1sM1iBPCQ==", "192.168.1.32", "5151", "", "SDE.DEFAULT").GetWorkspace() Is Nothing)
+        Assert.IsTrue(Not New GeoServices.SDE.WorkspaceConnection("sde", "6V9+llAOn67jFVgzxN/Sbg==", "192.168.1.32", "5151", "", "SDE.DEFAULT").GetWorkspace() Is Nothing)
     End Sub
 
     <TestMethod()>
