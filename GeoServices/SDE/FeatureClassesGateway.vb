@@ -52,7 +52,7 @@ Namespace SDE
         ''' Para realizar otra validación se debe generar una subclase que sobreescriba este método
         ''' </remarks>
         Protected Overridable Function validDataset(ByVal dataset As IDataset) As Boolean
-            Return Not Me.sanitizeName(dataset.Name).ToUpper Like "*AUDITORIA*" AndAlso Not Me.sanitizeName(dataset.Name).ToUpper Like "*HISTORICO*" AndAlso Not Me.sanitizeName(dataset.Name).ToUpper Like "*RED*" AndAlso TypeOf dataset Is IFeatureClass
+            Return Not Me.SanitizeString(dataset.Name).ToUpper Like "*AUDITORIA*" AndAlso Not Me.SanitizeString(dataset.Name).ToUpper Like "*HISTORICO*" AndAlso Not Me.SanitizeString(dataset.Name).ToUpper Like "*RED*" AndAlso TypeOf dataset Is IFeatureClass
         End Function
 
         ''' <summary>
@@ -65,7 +65,7 @@ Namespace SDE
         ''' Para realizar otra validación se debe generar una subclase que sobreescriba este método
         ''' </remarks>
         Protected Overridable Function validFeatureClass(ByVal fclass As IFeatureClass) As Boolean
-            Return Not Me.sanitizeName(fclass.AliasName).ToUpper Like "*AUDITORIA*" AndAlso Not Me.sanitizeName(fclass.AliasName).ToUpper Like "*HISTORICO*" AndAlso Not Me.sanitizeName(fclass.AliasName).ToUpper Like "*RED*"
+            Return Not Me.SanitizeString(fclass.AliasName).ToUpper Like "*AUDITORIA*" AndAlso Not Me.SanitizeString(fclass.AliasName).ToUpper Like "*HISTORICO*" AndAlso Not Me.SanitizeString(fclass.AliasName).ToUpper Like "*RED*"
         End Function
 
         ''' <summary>
@@ -77,12 +77,8 @@ Namespace SDE
         ''' La validación realizada acá es que sea una capa en producción y no sea de red.
         ''' Para realizar otra validación se debe generar una subclase que sobreescriba este método
         ''' </remarks>
-        Protected Overridable Function isValid(ByVal dataset As IDataset) As Boolean
-            Return TypeOf dataset Is IFeatureClass AndAlso Me.validDataset(dataset) AndAlso Me.validFeatureClass(dataset)
-        End Function
-
-        Protected Function sanitizeName(ByVal name As String)
-            Return name.ToLower().Replace("á", "a").Replace("é", "e").Replace("í", "i").Replace("ó", "o").Replace("ú", "u")
+        Protected Overridable Function isValid(ByVal dataset As IDataset, Optional ByVal RequiresEditorPriviledges As Boolean = True) As Boolean
+            Return TypeOf dataset Is IFeatureClass AndAlso Me.validFeatureClass(dataset) AndAlso Me.validDataset(dataset) AndAlso Me.ExtraValidation(dataset, RequiresEditorPriviledges)
         End Function
 
         ''' <summary>
@@ -90,7 +86,7 @@ Namespace SDE
         ''' </summary>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Protected Overrides Function doGetAll(ByVal workspace As ESRI.ArcGIS.Geodatabase.IWorkspace) As System.Collections.Generic.List(Of ESRI.ArcGIS.Geodatabase.IFeatureClass)
+        Protected Overrides Function doGetAll(ByVal workspace As IWorkspace, ByVal RequiresEditorPriviledges As Boolean) As System.Collections.Generic.List(Of ESRI.ArcGIS.Geodatabase.IFeatureClass)
             Dim fclasses As New List(Of IFeatureClass)
 
             Dim datasets As IEnumDataset = workspace.Datasets(esriDatasetType.esriDTFeatureDataset)
@@ -99,7 +95,7 @@ Namespace SDE
             Dim fclass As IFeatureClass = featureClasses.Next
 
             While Not fclass Is Nothing
-                If Me.isValid(fclass) Then fclasses.Add(fclass)
+                If Me.isValid(fclass, RequiresEditorPriviledges) Then fclasses.Add(fclass)
                 fclass = featureClasses.Next
             End While
 
@@ -124,6 +120,59 @@ Namespace SDE
             Return fclasses
         End Function
 
+        Public Overrides Function GetByName(ByVal name As String, Optional ByVal connectionNumber As Integer = 0, Optional ByVal RequiresEditorPriviledges As Boolean = True) As ESRI.ArcGIS.Geodatabase.IFeatureClass
+            Dim wksp As IWorkspace = New XML.XMLWorkspaceGetter().GetSingleWorkspace(connectionNumber)
+            If wksp Is Nothing Then Throw New DataException("No se ha provisto ningún workspace")
+
+            Dim datasets As IEnumDataset = wksp.Datasets(esriDatasetType.esriDTFeatureDataset)
+            Dim featureClasses As IEnumDataset = wksp.Datasets(esriDatasetType.esriDTFeatureClass)
+
+            Dim fclass As IFeatureClass = featureClasses.Next
+
+            Dim returningFClass As IFeatureClass
+
+            While Not fclass Is Nothing
+                returningFClass = Me.ReturnSingleElement(name, fclass, RequiresEditorPriviledges)
+                If Not returningFClass Is Nothing Then Return returningFClass
+                fclass = featureClasses.Next
+            End While
+
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(featureClasses)
+
+            Dim dataset As IFeatureDataset = datasets.Next
+            While Not dataset Is Nothing
+                If TypeOf dataset Is IFeatureClass Then
+                    returningFClass = Me.ReturnSingleElement(name, fclass, RequiresEditorPriviledges)
+                    If Not returningFClass Is Nothing Then Return returningFClass
+                End If
+                If Not dataset.Subsets Is Nothing Then
+                    Dim subset As IEnumDataset = dataset.Subsets
+                    fclass = Me.getNextFClass(subset, subset.Next)
+                    While Not fclass Is Nothing
+                        returningFClass = Me.ReturnSingleElement(name, fclass, RequiresEditorPriviledges)
+                        If Not returningFClass Is Nothing Then Return returningFClass
+                        fclass = Me.getNextFClass(subset, subset.Next)
+                    End While
+                End If
+                dataset = datasets.Next
+            End While
+
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(datasets)
+
+            Throw New DataException("El FeatureClass " & name & " no ha sido encontrado")
+        End Function
+
+        Protected Function ReturnSingleElement(ByVal name As String, ByVal fclass As IFeatureClass, ByVal RequiresEditorPriviledges As Boolean)
+            If Me.IsNameEqual(name, fclass) Then
+                If Me.ExtraValidation(fclass, RequiresEditorPriviledges) Then
+                    Return fclass
+                Else
+                    Throw New DataException("El FeatureClass " & name & " no puede ser abierto para edición")
+                End If
+            Else : Return Nothing
+            End If
+        End Function
+
         Protected Overrides Function GetElementName() As String
             Return "Feature Class"
         End Function
@@ -132,8 +181,8 @@ Namespace SDE
             Return "Feature Classes"
         End Function
 
-        Protected Overrides Function ExtraValidation(ByVal element As ESRI.ArcGIS.Geodatabase.IFeatureClass, ByVal name As String) As Boolean
-            Return element.AliasName.ToUpper.Contains(name.ToUpper)
+        Protected Function IsNameEqual(ByVal name As String, ByVal element As ESRI.ArcGIS.Geodatabase.IFeatureClass) As Boolean
+            Return CType(element, IDataset).Name.ToUpper().Contains(name.ToUpper()) OrElse element.AliasName.ToUpper().Contains(name.ToUpper())
         End Function
     End Class
 End Namespace

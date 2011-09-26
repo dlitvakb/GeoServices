@@ -25,7 +25,7 @@ Public Class FeatureClassesGatewayTest
             Dim fclass As IFeatureClass = New GeoServices.SDE.FeatureClassesGateway().GetByName("Cualquier_Cosa")
             Assert.Fail()
         Catch ex As DataException
-            Assert.IsTrue(ex.Message = "El/La Feature Class " & "Cualquier_Cosa" & " no se ha encontrado")
+            Assert.IsTrue(ex.Message = "El FeatureClass " & "Cualquier_Cosa" & " no ha sido encontrado")
         End Try
     End Sub
 

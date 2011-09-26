@@ -6,41 +6,7 @@ GeoServices
 </name>
 </assembly>
 <members>
-<member name="M:GeoServices.SDE.EditingWorkspace.StartEditing(System.Boolean)">
-	<summary>
- Inicia sesión de edición
- </summary>
-	<param name="WithUndoRedo"></param>
-	<remarks></remarks>
-</member><member name="M:GeoServices.SDE.EditingWorkspace.StartEditOperation">
-	<summary>
- Inicia una operación de edición
- </summary>
-	<remarks></remarks>
-</member><member name="M:GeoServices.SDE.EditingWorkspace.StopEditOperation">
-	<summary>
- Finaliza una operación de edición
- </summary>
-	<remarks></remarks>
-</member><member name="M:GeoServices.SDE.EditingWorkspace.StopEditing(System.Boolean)">
-	<summary>
- Finaliza la sesión de edición
- </summary>
-	<param name="SaveEdits"></param>
-	<remarks></remarks>
-</member><member name="M:GeoServices.SDE.EditingWorkspace.getWorkspace">
-	<summary>
- Retorna el Workspace de edición
- </summary>
-	<returns></returns>
-	<remarks></remarks>
-</member><member name="M:GeoServices.SDE.EditingWorkspace.isVersioned">
-	<summary>
- Informa si el dataset se encuentra bajo control de versiones
- </summary>
-	<returns></returns>
-	<remarks></remarks>
-</member><member name="P:GeoServices.My.Resources.Resources.ResourceManager">
+<member name="P:GeoServices.My.Resources.Resources.ResourceManager">
 	<summary>
   Returns the cached ResourceManager instance used by this class.
 </summary>
@@ -58,17 +24,18 @@ GeoServices
  Wrapper para logging de servicios con acceso al event viewer y archivos log de texto
  </summary>
 	<remarks>Se debe especificar el nombre de la aplicación en el Config.xml</remarks>
-</member><member name="M:GeoServices.SDE.TableGateway.doGetAll(ESRI.ArcGIS.Geodatabase.IWorkspace)">
+</member><member name="M:GeoServices.SDE.TableGateway.doGetAll(ESRI.ArcGIS.Geodatabase.IWorkspace,System.Boolean)">
 	<summary>
  Obtiene todas las tablas del SDE para la conexión especificada
  </summary>
 	<returns></returns>
 	<remarks>El esquema de obtención está realizado para tablas sin anidamiento que se encuentran en la raíz del SDE</remarks>
-</member><member name="M:GeoServices.SDEDataGateway`1.GetAll(System.Int32)">
+</member><member name="M:GeoServices.SDEDataGateway`1.GetAll(System.Int32,System.Boolean)">
 	<summary>
- Permite obtener todos los elementos del tipo especificado en la subclase presentes en el SDE para la conexión especificada
+ Permite obtener todos los elementos del tipo especificado en la subclase presentes en el SDE para la conexión especificada.
+ Por defecto retorna unicamente los elementos para los cuales se tienen permisos de edición, para obtener todos los elementos
+ en el parámetro RequiresEditorPriviledges poner el valor False
  </summary>
-	<param name="connectionNumber"></param>
 	<returns></returns>
 	<remarks></remarks>
 </member><member name="M:GeoServices.SDEDataGateway`1.GetElementName">
@@ -83,7 +50,7 @@ GeoServices
  </summary>
 	<returns></returns>
 	<remarks></remarks>
-</member><member name="M:GeoServices.SDEDataGateway`1.GetByNameList(System.String[],System.Int32,System.Boolean)">
+</member><member name="M:GeoServices.SDEDataGateway`1.GetByNameList(System.String[],System.Int32,System.Boolean,System.Boolean)">
 	<summary>
  Permite obtener elementos del SDE en base a una lista de nombres
  </summary>
@@ -92,7 +59,7 @@ GeoServices
 	<param name="GetResultsAnyway"></param>
 	<returns></returns>
 	<remarks>Por defecto, si no se encuentra algún elemento, se lanza una DataException, sin embargo, cambiando GetResultsAnyway, permite obtener las que se haya encontrado</remarks>
-</member><member name="M:GeoServices.SDEDataGateway`1.GetByName(System.String,System.Int32)">
+</member><member name="M:GeoServices.SDEDataGateway`1.GetByName(System.String,System.Int32,System.Boolean)">
 	<summary>
  Permite obtener elementos singulares dentro del SDE
  </summary>
@@ -100,12 +67,11 @@ GeoServices
 	<param name="connectionNumber"></param>
 	<returns></returns>
 	<remarks></remarks>
-</member><member name="M:GeoServices.SDEDataGateway`1.ExtraValidation(`0,System.String)">
+</member><member name="M:GeoServices.SDEDataGateway`1.ExtraValidation(`0,System.Boolean)">
 	<summary>
- Cualquier validación extra que se quiera hacer para obtener los elementos del SDE en las busquedas por nombre y lista de nombres
+ Cualquier validación extra que se quiera hacer para obtener los elementos del SDE en las busquedas
  </summary>
 	<param name="element"></param>
-	<param name="name"></param>
 	<returns></returns>
 	<remarks></remarks>
 </member><member name="T:GeoServices.SDEDataGateway`1">
@@ -215,6 +181,40 @@ GeoServices
  Esta clase no debe ser instanciada directamente
  Se debe Overridear doWork
  </remarks>
+</member><member name="M:GeoServices.SDE.EditingWorkspace.StartEditing(System.Boolean)">
+	<summary>
+ Inicia sesión de edición
+ </summary>
+	<param name="WithUndoRedo"></param>
+	<remarks></remarks>
+</member><member name="M:GeoServices.SDE.EditingWorkspace.StartEditOperation">
+	<summary>
+ Inicia una operación de edición
+ </summary>
+	<remarks></remarks>
+</member><member name="M:GeoServices.SDE.EditingWorkspace.StopEditOperation">
+	<summary>
+ Finaliza una operación de edición
+ </summary>
+	<remarks></remarks>
+</member><member name="M:GeoServices.SDE.EditingWorkspace.StopEditing(System.Boolean)">
+	<summary>
+ Finaliza la sesión de edición
+ </summary>
+	<param name="SaveEdits"></param>
+	<remarks></remarks>
+</member><member name="M:GeoServices.SDE.EditingWorkspace.getWorkspace">
+	<summary>
+ Retorna el Workspace de edición
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:GeoServices.SDE.EditingWorkspace.isVersioned">
+	<summary>
+ Informa si el dataset se encuentra bajo control de versiones
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
 </member><member name="T:GeoServices.Logger.ServiceEventWriter">
 	<summary>
  Provee la interfaz para el event viewer
@@ -296,7 +296,7 @@ GeoServices
  La validación realizada acá es que sea una capa en producción y no sea de red.
  Para realizar otra validación se debe generar una subclase que sobreescriba este método
  </remarks>
-</member><member name="M:GeoServices.SDE.FeatureClassesGateway.isValid(ESRI.ArcGIS.Geodatabase.IDataset)">
+</member><member name="M:GeoServices.SDE.FeatureClassesGateway.isValid(ESRI.ArcGIS.Geodatabase.IDataset,System.Boolean)">
 	<summary>
  Realiza la validación de un dataset (Feature Class, Tabla, Feature Dataset...) según lo especificado
  </summary>
@@ -306,7 +306,7 @@ GeoServices
  La validación realizada acá es que sea una capa en producción y no sea de red.
  Para realizar otra validación se debe generar una subclase que sobreescriba este método
  </remarks>
-</member><member name="M:GeoServices.SDE.FeatureClassesGateway.doGetAll(ESRI.ArcGIS.Geodatabase.IWorkspace)">
+</member><member name="M:GeoServices.SDE.FeatureClassesGateway.doGetAll(ESRI.ArcGIS.Geodatabase.IWorkspace,System.Boolean)">
 	<summary>
  Obtiene una lista de todos los FeatureClasses para la conexión especificada
  </summary>
