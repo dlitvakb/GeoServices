@@ -16,12 +16,23 @@ Namespace SDE
         ''' <param name="WithUndoRedo"></param>
         ''' <remarks></remarks>
         Public Sub StartEditing(ByVal WithUndoRedo As Boolean)
-            If Me.isVersioned() Then
-                Dim wksp As IWorkspaceEdit2 = Me.getWorkspace()
+            If Me.isVersioned() Then Me.getWorkspace().StartEditing(WithUndoRedo)
+        End Sub
 
-                wksp.StartEditing(WithUndoRedo)
-                wksp.StartEditOperation()
-            End If
+        ''' <summary>
+        ''' Inicia una operación de edición
+        ''' </summary>
+        ''' <remarks></remarks>
+        Public Sub StartEditOperation()
+            If Me.isVersioned Then Me.getWorkspace().StartEditOperation()
+        End Sub
+
+        ''' <summary>
+        ''' Finaliza una operación de edición
+        ''' </summary>
+        ''' <remarks></remarks>
+        Public Sub StopEditOperation()
+            If Me.isVersioned Then Me.getWorkspace().StopEditOperation()
         End Sub
 
         ''' <summary>
@@ -30,12 +41,7 @@ Namespace SDE
         ''' <param name="SaveEdits"></param>
         ''' <remarks></remarks>
         Public Sub StopEditing(ByVal SaveEdits As Boolean)
-            If Me.isVersioned() Then
-                Dim wksp As IWorkspaceEdit2 = Me.getWorkspace()
-
-                wksp.StopEditOperation()
-                wksp.StopEditing(SaveEdits)
-            End If
+            If Me.isVersioned() Then Me.getWorkspace()..StopEditing(SaveEdits)
         End Sub
 
         ''' <summary>
