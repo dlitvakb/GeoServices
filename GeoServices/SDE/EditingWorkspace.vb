@@ -41,7 +41,7 @@ Namespace SDE
         ''' <param name="SaveEdits"></param>
         ''' <remarks></remarks>
         Public Sub StopEditing(ByVal SaveEdits As Boolean)
-            If Me.isVersioned() Then Me.getWorkspace()..StopEditing(SaveEdits)
+            If Me.isVersioned() Then Me.getWorkspace().StopEditing(SaveEdits)
         End Sub
 
         ''' <summary>
