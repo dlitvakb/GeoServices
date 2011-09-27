@@ -61,7 +61,7 @@ Public MustInherit Class SDEDataGateway(Of T As {Class})
 
         For Each name As String In names
             For Each element As T In elements
-                If Me.IsNameEquals(element, name) AndAlso Me.ExtraValidation(element, RequiresEditorPriviledges) Then
+                If Me.IsNameEquals(element, name) AndAlso Me.PermissionsValidation(element, RequiresEditorPriviledges) Then
                     result.Add(element)
                     Exit For
                 End If
@@ -89,13 +89,13 @@ Public MustInherit Class SDEDataGateway(Of T As {Class})
     End Function
 
     ''' <summary>
-    ''' Cualquier validación extra que se quiera hacer para obtener los elementos del SDE en las busquedas
+    ''' Realiza chequeos de permisos de edición
     ''' </summary>
     ''' <param name="element"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Protected Overridable Function ExtraValidation(ByVal element As T, Optional ByVal RequiresEditorPriviledges As Boolean = True) As Boolean
-        Return True AndAlso IIf(RequiresEditorPriviledges, CType(element, IDatasetEditInfo).CanEdit, True)
+    Protected Overridable Function PermissionsValidation(ByVal element As T, Optional ByVal RequiresEditorPriviledges As Boolean = True) As Boolean
+        Return IIf(RequiresEditorPriviledges AndAlso New SDE.EditingWorkspace(element).isVersioned(), CType(element, IDatasetEditInfo).CanEdit, True)
     End Function
 
     Protected Function SanitizeString(ByVal text As String) As String

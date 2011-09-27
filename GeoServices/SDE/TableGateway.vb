@@ -15,7 +15,7 @@ Namespace SDE
             Dim datasets As IEnumDataset = workspace.Datasets(esriDatasetType.esriDTTable)
             Dim table As IDataset = datasets.Next
             While Not table Is Nothing
-                If Me.ExtraValidation(table, RequiresEditorPriviledges) Then tables.Add(table)
+                If Me.PermissionsValidation(table, RequiresEditorPriviledges) Then tables.Add(table)
                 table = datasets.Next
             End While
 

@@ -78,7 +78,7 @@ Namespace SDE
         ''' Para realizar otra validación se debe generar una subclase que sobreescriba este método
         ''' </remarks>
         Protected Overridable Function isValid(ByVal dataset As IDataset, Optional ByVal RequiresEditorPriviledges As Boolean = True) As Boolean
-            Return TypeOf dataset Is IFeatureClass AndAlso Me.validFeatureClass(dataset) AndAlso Me.validDataset(dataset) AndAlso Me.ExtraValidation(dataset, RequiresEditorPriviledges)
+            Return TypeOf dataset Is IFeatureClass AndAlso Me.validFeatureClass(dataset) AndAlso Me.validDataset(dataset) AndAlso Me.PermissionsValidation(dataset, RequiresEditorPriviledges)
         End Function
 
         ''' <summary>
@@ -164,7 +164,7 @@ Namespace SDE
 
         Protected Function ReturnSingleElement(ByVal name As String, ByVal fclass As IFeatureClass, ByVal RequiresEditorPriviledges As Boolean)
             If Me.IsNameEquals(fclass, name) Then
-                If Me.ExtraValidation(fclass, RequiresEditorPriviledges) Then
+                If Me.PermissionsValidation(fclass, RequiresEditorPriviledges) Then
                     Return fclass
                 Else
                     Throw New DataException("El FeatureClass " & name & " no puede ser abierto para edición")
