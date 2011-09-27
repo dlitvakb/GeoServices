@@ -31,5 +31,9 @@ Namespace SDE
         Protected Overrides Function GetPluralName() As String
             Return "Tablas"
         End Function
+
+        Protected Overrides Function IsNameEquals(ByVal element As ESRI.ArcGIS.Geodatabase.ITable, ByVal name As String) As Boolean
+            Return CType(element, IDataset).Name.ToUpper().Contains(name.ToUpper())
+        End Function
     End Class
 End Namespace

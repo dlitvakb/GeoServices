@@ -163,7 +163,7 @@ Namespace SDE
         End Function
 
         Protected Function ReturnSingleElement(ByVal name As String, ByVal fclass As IFeatureClass, ByVal RequiresEditorPriviledges As Boolean)
-            If Me.IsNameEqual(name, fclass) Then
+            If Me.IsNameEquals(fclass, name) Then
                 If Me.ExtraValidation(fclass, RequiresEditorPriviledges) Then
                     Return fclass
                 Else
@@ -181,7 +181,7 @@ Namespace SDE
             Return "Feature Classes"
         End Function
 
-        Protected Function IsNameEqual(ByVal name As String, ByVal element As ESRI.ArcGIS.Geodatabase.IFeatureClass) As Boolean
+        Protected Overrides Function IsNameEquals(ByVal element As ESRI.ArcGIS.Geodatabase.IFeatureClass, ByVal name As String) As Boolean
             Return CType(element, IDataset).Name.ToUpper().Contains(name.ToUpper()) OrElse element.AliasName.ToUpper().Contains(name.ToUpper())
         End Function
     End Class

@@ -38,6 +38,12 @@ GeoServices
  </summary>
 	<returns></returns>
 	<remarks></remarks>
+</member><member name="M:GeoServices.SDEDataGateway`1.IsNameEquals(`0,System.String)">
+	<summary>
+ Realiza la verificación de nombres para el objeto de SDE
+ </summary>
+	<returns></returns>
+	<remarks></remarks>
 </member><member name="M:GeoServices.SDEDataGateway`1.GetElementName">
 	<summary>
  Obtiene el nombre del tipo de elemento a utilizar por la clase para ser mostrado en la descripción del error

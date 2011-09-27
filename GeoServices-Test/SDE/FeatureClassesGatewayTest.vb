@@ -49,6 +49,25 @@ Public Class FeatureClassesGatewayTest
         Assert.IsTrue(New GeoServices.SDE.FeatureClassesGateway().GetByNameList({"Cualquier_Cosa", "FAC_ACU_TRAMOS"}, GetResultsAnyway:=True).Count = 1)
     End Sub
 
+    <TestMethod()>
+    Public Sub FeatureClassPorNombreYConPermisosDeEdicionYFunciona()
+        Assert.IsTrue(New GeoServices.SDE.FeatureClassesGateway().GetByName("PRUEBA_PERMISOS", connectionNumber:=0, RequiresEditorPriviledges:=True).AliasName.Contains("PRUEBA_PERMISOS"))
+    End Sub
+
+    <TestMethod()>
+    Public Sub FeatureClassPorNombreYConPermisosDeEdicionYFalla()
+        Try
+            Dim debe_fallar As IFeatureClass = New GeoServices.SDE.FeatureClassesGateway().GetByName("PRUEBA_PERMISOS", connectionNumber:=1, RequiresEditorPriviledges:=True)
+        Catch ex As DataException
+            Assert.IsTrue(ex.Message = "El FeatureClass PRUEBA_PERMISOS no puede ser abierto para edición")
+        End Try
+    End Sub
+
+    <TestMethod()>
+    Public Sub FeatureClassPorNombreYSinPermisosDeEdicionYFunciona()
+        Assert.IsTrue(New GeoServices.SDE.FeatureClassesGateway().GetByName("PRUEBA_PERMISOS", connectionNumber:=1, RequiresEditorPriviledges:=False).AliasName.Contains("PRUEBA_PERMISOS"))
+    End Sub
+
     <ClassCleanup()> Public Shared Sub MyClassCleanup()
         GeoServices.License.LicenseInitializer.ReleaseLicense()
     End Sub

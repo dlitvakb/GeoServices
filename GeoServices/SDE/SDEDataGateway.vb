@@ -27,6 +27,13 @@ Public MustInherit Class SDEDataGateway(Of T As {Class})
     Protected MustOverride Function doGetAll(ByVal workspace As IWorkspace, ByVal RequiresEditorPriviledges As Boolean) As List(Of T)
 
     ''' <summary>
+    ''' Realiza la verificación de nombres para el objeto de SDE
+    ''' </summary>
+    ''' <returns></returns>
+    ''' <remarks></remarks>
+    Protected MustOverride Function IsNameEquals(ByVal element As T, ByVal name As String) As Boolean
+
+    ''' <summary>
     ''' Obtiene el nombre del tipo de elemento a utilizar por la clase para ser mostrado en la descripción del error
     ''' </summary>
     ''' <returns></returns>
@@ -54,7 +61,7 @@ Public MustInherit Class SDEDataGateway(Of T As {Class})
 
         For Each name As String In names
             For Each element As T In elements
-                If Me.ExtraValidation(element, RequiresEditorPriviledges) Then
+                If Me.IsNameEquals(element, name) AndAlso Me.ExtraValidation(element, RequiresEditorPriviledges) Then
                     result.Add(element)
                     Exit For
                 End If
@@ -94,4 +101,5 @@ Public MustInherit Class SDEDataGateway(Of T As {Class})
     Protected Function SanitizeString(ByVal text As String) As String
         Return text.ToLower().Replace("á", "a").Replace("é", "e").Replace("í", "i").Replace("ó", "o").Replace("ú", "u")
     End Function
+
 End Class
