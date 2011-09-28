@@ -95,7 +95,7 @@ Public MustInherit Class SDEDataGateway(Of T As {Class})
     ''' <returns></returns>
     ''' <remarks></remarks>
     Protected Overridable Function PermissionsValidation(ByVal element As T, Optional ByVal RequiresEditorPriviledges As Boolean = True) As Boolean
-        Return IIf(RequiresEditorPriviledges AndAlso New SDE.EditingWorkspace(element).isVersioned(), CType(element, IDatasetEditInfo).CanEdit, True)
+        Return IIf(RequiresEditorPriviledges, CType(element, IDatasetEditInfo).CanEdit, True)
     End Function
 
     Protected Function SanitizeString(ByVal text As String) As String
