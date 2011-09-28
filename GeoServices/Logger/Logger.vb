@@ -8,9 +8,9 @@
             Logger.Info("Program Started")
         End Sub
 
-        Shared Sub Warn(ByVal message As Object)
+        Shared Sub Warn(ByVal message As Object, Optional ByVal LogFileOnly As Boolean = True)
             FileEventLogger.Warn(message)
-            ServiceEventWriter.Warn(message)
+            If Not LogFileOnly Then ServiceEventWriter.Warn(message)
         End Sub
 
         Shared Sub [Error](ByVal message As Object)

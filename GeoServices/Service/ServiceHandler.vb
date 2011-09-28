@@ -67,10 +67,10 @@ Public Class ServiceHandler
                 Me.oTimer.Change(60000, 60000)
             End If
         Catch ex As UnauthorizedAccessException
-            Logger.Logger.Warn(ex)
+            Logger.Logger.Warn(ex, False)
             Me.Stop()
         Catch ex As COMException
-            Logger.Logger.Warn(ex)
+            Logger.Logger.Warn(ex, False)
             Me.Stop()
         Catch ex As Exception
             Logger.Logger.Error(ex)

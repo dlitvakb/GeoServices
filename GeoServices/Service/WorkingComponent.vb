@@ -31,7 +31,7 @@ Namespace Worker
                 Me.doExecute()
                 License.LicenseInitializer.ReleaseLicense()
             Catch ex As DataException
-                Logger.Logger.Warn(ex)
+                Logger.Logger.Warn(ex, False)
             Catch ex As COMException
                 If ex.Message.ToUpper().Contains(LICENSE_EXCEPTION_MESSAGE) Then Throw ex
                 Logger.Logger.Error(ex)
