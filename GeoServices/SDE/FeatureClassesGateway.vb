@@ -78,7 +78,7 @@ Namespace SDE
         ''' Para realizar otra validación se debe generar una subclase que sobreescriba este método
         ''' </remarks>
         Protected Overridable Function isValid(ByVal dataset As IDataset, Optional ByVal RequiresEditorPriviledges As Boolean = True) As Boolean
-            Return TypeOf dataset Is IFeatureClass AndAlso Me.validFeatureClass(dataset) AndAlso Me.validDataset(dataset) AndAlso Me.PermissionsValidation(dataset, RequiresEditorPriviledges)
+            Return Me.validFeatureClass(dataset) AndAlso Me.validDataset(dataset) AndAlso Me.PermissionsValidation(dataset, RequiresEditorPriviledges)
         End Function
 
         ''' <summary>
@@ -103,12 +103,12 @@ Namespace SDE
 
             Dim dataset As IFeatureDataset = datasets.Next
             While Not dataset Is Nothing
-                If Me.isValid(dataset) Then fclasses.Add(dataset)
+                If TypeOf fclass Is IFeatureClass AndAlso Me.isValid(fclass, RequiresEditorPriviledges) Then fclasses.Add(dataset)
                 If Not dataset.Subsets Is Nothing Then
                     Dim subset As IEnumDataset = dataset.Subsets
                     fclass = Me.getNextFClass(subset, subset.Next)
                     While Not fclass Is Nothing
-                        If Me.isValid(fclass) Then fclasses.Add(fclass)
+                        If Me.isValid(fclass, RequiresEditorPriviledges) Then fclasses.Add(fclass)
                         fclass = Me.getNextFClass(subset, subset.Next)
                     End While
                 End If

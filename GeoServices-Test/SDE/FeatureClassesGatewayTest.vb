@@ -68,6 +68,14 @@ Public Class FeatureClassesGatewayTest
         Assert.IsTrue(New GeoServices.SDE.FeatureClassesGateway().GetByName("PRUEBA_PERMISOS", connectionNumber:=1, RequiresEditorPriviledges:=False).AliasName.Contains("PRUEBA_PERMISOS"))
     End Sub
 
+    <TestMethod()>
+    Public Sub BuscoEntreTodosLosFeatureClassUnoSinPermisosDeEdicionYNoDeberiaEstar()
+        For Each fclass As IFeatureClass In New GeoServices.SDE.FeatureClassesGateway().GetAll(connectionNumber:=1, RequiresEditorPriviledges:=True)
+            If Not New GeoServices.SDE.PrivilegesValidator(fclass).CanEdit Then Assert.Fail()
+        Next
+        Assert.IsTrue(True)
+    End Sub
+
     <ClassCleanup()> Public Shared Sub MyClassCleanup()
         GeoServices.License.LicenseInitializer.ReleaseLicense()
     End Sub
