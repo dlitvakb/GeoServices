@@ -55,7 +55,7 @@ Public Class FeatureClassesGatewayTest
     End Sub
 
     <TestMethod()>
-    Public Sub FeatureClassPorNombreYConPermisosDeEdicionYFalla()
+    Public Sub FeatureClassPorNombreYConPermisosDeEdicionYFallaPorqueNoTengoPermisos()
         Try
             Dim debe_fallar As IFeatureClass = New GeoServices.SDE.FeatureClassesGateway().GetByName("PRUEBA_PERMISOS", connectionNumber:=1, Privileges:=GeoServices.SDE.SDEPermissions.SDEEdit)
         Catch ex As DataException
