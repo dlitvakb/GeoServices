@@ -22,8 +22,6 @@ Public Class ServiceHandler
     ''' Wrapper de todas las acciones del servicio
     ''' Inicia el log, mantiene actualizada la lista de horarios de Config.xml y da inicio a las acciones especificadas en las subclases
     ''' </summary>
-    ''' <param name="args"></param>
-    ''' <remarks></remarks>
     Protected Overrides Sub OnStart(ByVal args() As String)
         Dim oCallback As New TimerCallback(AddressOf Me.start)
         oTimer = New System.Threading.Timer(oCallback, Nothing, 60000, 60000)

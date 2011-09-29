@@ -13,8 +13,6 @@ Namespace SDE
         ''' <summary>
         ''' Inicia sesión de edición
         ''' </summary>
-        ''' <param name="WithUndoRedo"></param>
-        ''' <remarks></remarks>
         Public Sub StartEditing(ByVal WithUndoRedo As Boolean)
             If Me.isVersioned() Then Me.getWorkspace().StartEditing(WithUndoRedo)
         End Sub
@@ -22,7 +20,6 @@ Namespace SDE
         ''' <summary>
         ''' Inicia una operación de edición
         ''' </summary>
-        ''' <remarks></remarks>
         Public Sub StartEditOperation()
             If Me.isVersioned Then Me.getWorkspace().StartEditOperation()
         End Sub
@@ -30,7 +27,6 @@ Namespace SDE
         ''' <summary>
         ''' Finaliza una operación de edición
         ''' </summary>
-        ''' <remarks></remarks>
         Public Sub StopEditOperation()
             If Me.isVersioned Then Me.getWorkspace().StopEditOperation()
         End Sub
@@ -38,8 +34,6 @@ Namespace SDE
         ''' <summary>
         ''' Finaliza la sesión de edición
         ''' </summary>
-        ''' <param name="SaveEdits"></param>
-        ''' <remarks></remarks>
         Public Sub StopEditing(ByVal SaveEdits As Boolean)
             If Me.isVersioned() Then Me.getWorkspace().StopEditing(SaveEdits)
         End Sub
@@ -47,8 +41,6 @@ Namespace SDE
         ''' <summary>
         ''' Retorna el Workspace de edición
         ''' </summary>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Protected Function getWorkspace() As IWorkspaceEdit2
             Return Me.Dataset.Workspace
         End Function
@@ -56,8 +48,6 @@ Namespace SDE
         ''' <summary>
         ''' Informa si el dataset se encuentra bajo control de versiones
         ''' </summary>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Function isVersioned() As Boolean
             Return CType(Me.Dataset, IVersionedObject3).IsRegisteredAsVersioned
         End Function

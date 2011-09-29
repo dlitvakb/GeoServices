@@ -5,15 +5,12 @@ Namespace XML
     ''' <summary>
     ''' Obtiene Conexiones a una base de datos SDE a partir de la configuración especificada en Config.xml
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class XMLWorkspaceGetter
         Inherits XMLGetter
 
         ''' <summary>
         ''' Obtiene una lista de propiedades de conexiones
         ''' </summary>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Function GetAllConnections() As List(Of SDE.WorkspaceConnection)
             Dim connections As New List(Of SDE.WorkspaceConnection)
 
@@ -31,8 +28,6 @@ Namespace XML
         ''' <summary>
         ''' Obtiene una lista de elementos que conforman las propiedades de conexión necesarias para una Base de Datos SDE
         ''' </summary>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Function GetSingleConnection(Optional ByVal index As Integer = 0) As SDE.WorkspaceConnection
             Return Me.GetAllConnections(index)
         End Function
@@ -41,7 +36,6 @@ Namespace XML
         ''' Obtiene la conexion a una base de datos SDE
         ''' </summary>
         ''' <returns>Retorna un SdeWorkspace</returns>
-        ''' <remarks></remarks>
         Public Function GetSingleWorkspace(Optional ByVal index As Integer = 0) As IWorkspace
             Return Me.GetSingleConnection(index).GetWorkspace()
         End Function
@@ -49,8 +43,6 @@ Namespace XML
         ''' <summary>
         ''' Obtiene una lista de workspaces a partir de las conexiones especificadas
         ''' </summary>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Public Function GetAllWorkspaces() As List(Of IWorkspace)
             Dim workspaces As New List(Of IWorkspace)
 

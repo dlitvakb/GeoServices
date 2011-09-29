@@ -4,7 +4,6 @@ Namespace XML
     ''' <summary>
     ''' Obtiene el itinerario del archivo Config.xml
     ''' </summary>
-    ''' <remarks></remarks>
     Public Class XMLScheduleGetter
         Inherits XMLGetter
 
@@ -12,7 +11,6 @@ Namespace XML
         ''' Obtiene una lista de horarios para los cuales está configurado el servicio
         ''' </summary>
         ''' <returns>Lista de horarios en formato HH:mm</returns>
-        ''' <remarks></remarks>
         Public Shared Function getSchedule() As List(Of String)
             Dim schedule As New List(Of String)
 

@@ -17,7 +17,6 @@ Namespace License
         ''' 3) ArcEditor
         ''' 4) ArcInfo
         ''' </summary>
-        ''' <remarks></remarks>
         Public Shared Sub InitializeLicense()
             Try
                 RuntimeManager.BindLicense(ProductCode.Server, LicenseLevel.GeodatabaseUpdate)
@@ -33,7 +32,6 @@ Namespace License
         ''' <summary>
         ''' Libera la licencia
         ''' </summary>
-        ''' <remarks></remarks>
         Public Shared Sub ReleaseLicense()
             Dim license As New AoInitialize()
             license.Shutdown()

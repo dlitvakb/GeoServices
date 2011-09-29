@@ -7,9 +7,8 @@ Namespace SDE
         ''' <summary>
         ''' Obtiene todas las tablas del SDE para la conexión especificada
         ''' </summary>
-        ''' <returns></returns>
         ''' <remarks>El esquema de obtención está realizado para tablas sin anidamiento que se encuentran en la raíz del SDE</remarks>
-        Protected Overrides Function doGetAll(ByVal workspace As IWorkspace, ByVal Privileges As SDE.SDEPermissions) As System.Collections.Generic.List(Of ESRI.ArcGIS.Geodatabase.ITable)
+        Protected Overrides Function doGetAll(ByVal workspace As IWorkspace, ByVal Privileges As SDE.SDEPrivileges) As System.Collections.Generic.List(Of ESRI.ArcGIS.Geodatabase.ITable)
             Dim tables As New List(Of ITable)
 
             Dim datasets As IEnumDataset = workspace.Datasets(esriDatasetType.esriDTTable)

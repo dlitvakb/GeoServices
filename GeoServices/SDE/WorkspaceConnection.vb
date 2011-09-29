@@ -3,6 +3,10 @@ Imports ESRI.ArcGIS.esriSystem
 Imports ESRI.ArcGIS.DataSourcesGDB
 
 Namespace SDE
+    ''' <summary>
+    ''' Permite obtener Workspaces a partir de los datos de conexión provistos a GeoServices
+    ''' </summary>
+    ''' <remarks>El password debe encontrarse encriptado localmente con la herramienta provista</remarks>
     Public Class WorkspaceConnection
         Private Property Username As String
         Private Property Password As String
@@ -22,6 +26,9 @@ Namespace SDE
             Me.Version = version
         End Sub
 
+        ''' <summary>
+        ''' Obtiene el workspace asociado a la conexión
+        ''' </summary>
         Public Function GetWorkspace() As IWorkspace
             Try
                 Dim properties As IPropertySet2 = New PropertySetClass()

@@ -20,10 +20,6 @@ Namespace SDE
         ''' <summary>
         ''' Retorna el siguiente Feature Class
         ''' </summary>
-        ''' <param name="subset"></param>
-        ''' <param name="dataset"></param>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Protected Function getNextFClass(ByRef subset As IEnumDataset, ByVal dataset As IDataset) As IFeatureClass
             While Not isFClass(dataset)
                 dataset = subset.Next
@@ -35,9 +31,6 @@ Namespace SDE
         ''' <summary>
         ''' Retorna si el Dataset ingresado es Feature Class
         ''' </summary>
-        ''' <param name="dataset"></param>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
         Protected Function isFClass(ByVal dataset As IDataset) As Boolean
             Return TypeOf dataset Is IFeatureClass OrElse dataset Is Nothing
         End Function
@@ -45,8 +38,6 @@ Namespace SDE
         ''' <summary>
         ''' Realiza la validación de un dataset (Feature Class, Tabla, Feature Dataset...) según lo especificado
         ''' </summary>
-        ''' <param name="dataset"></param>
-        ''' <returns></returns>
         ''' <remarks>
         ''' La validación realizada acá es que sea una capa en producción y no sea de red.
         ''' Para realizar otra validación se debe generar una subclase que sobreescriba este método
@@ -58,8 +49,6 @@ Namespace SDE
         ''' <summary>
         ''' Realiza la validación de un dataset (Feature Class, Tabla, Feature Dataset...) según lo especificado
         ''' </summary>
-        ''' <param name="fclass"></param>
-        ''' <returns></returns>
         ''' <remarks>
         ''' La validación realizada acá es que sea una capa en producción y no sea de red.
         ''' Para realizar otra validación se debe generar una subclase que sobreescriba este método
@@ -71,22 +60,18 @@ Namespace SDE
         ''' <summary>
         ''' Realiza la validación de un dataset (Feature Class, Tabla, Feature Dataset...) según lo especificado
         ''' </summary>
-        ''' <param name="dataset"></param>
-        ''' <returns></returns>
         ''' <remarks>
         ''' La validación realizada acá es que sea una capa en producción y no sea de red.
         ''' Para realizar otra validación se debe generar una subclase que sobreescriba este método
         ''' </remarks>
-        Protected Overridable Function isValid(ByVal dataset As IDataset, Optional ByVal Privileges As SDE.SDEPermissions = SDEPermissions.SDEEdit) As Boolean
+        Protected Overridable Function isValid(ByVal dataset As IDataset, Optional ByVal Privileges As SDE.SDEPrivileges = SDEPrivileges.SDEEdit) As Boolean
             Return Me.validFeatureClass(dataset) AndAlso Me.validDataset(dataset) AndAlso Me.PermissionsValidation(dataset, Privileges)
         End Function
 
         ''' <summary>
         ''' Obtiene una lista de todos los FeatureClasses para la conexión especificada
         ''' </summary>
-        ''' <returns></returns>
-        ''' <remarks></remarks>
-        Protected Overrides Function doGetAll(ByVal workspace As IWorkspace, ByVal Privileges As SDE.SDEPermissions) As System.Collections.Generic.List(Of ESRI.ArcGIS.Geodatabase.IFeatureClass)
+        Protected Overrides Function doGetAll(ByVal workspace As IWorkspace, ByVal Privileges As SDE.SDEPrivileges) As System.Collections.Generic.List(Of ESRI.ArcGIS.Geodatabase.IFeatureClass)
             Dim fclasses As New List(Of IFeatureClass)
 
             Dim datasets As IEnumDataset = workspace.Datasets(esriDatasetType.esriDTFeatureDataset)
@@ -120,7 +105,7 @@ Namespace SDE
             Return fclasses
         End Function
 
-        Public Overrides Function GetByName(ByVal name As String, Optional ByVal connectionNumber As Integer = 0, Optional ByVal Privileges As SDE.SDEPermissions = SDEPermissions.SDEEdit) As ESRI.ArcGIS.Geodatabase.IFeatureClass
+        Public Overrides Function GetByName(ByVal name As String, Optional ByVal connectionNumber As Integer = 0, Optional ByVal Privileges As SDE.SDEPrivileges = SDEPrivileges.SDEEdit) As ESRI.ArcGIS.Geodatabase.IFeatureClass
             Dim wksp As IWorkspace = New XML.XMLWorkspaceGetter().GetSingleWorkspace(connectionNumber)
             If wksp Is Nothing Then Throw New DataException("No se ha provisto ningún workspace")
 
@@ -162,7 +147,7 @@ Namespace SDE
             Throw New DataException("El FeatureClass " & name & " no ha sido encontrado")
         End Function
 
-        Protected Function ReturnSingleElement(ByVal name As String, ByVal fclass As IFeatureClass, ByVal Privileges As SDEPermissions)
+        Protected Function ReturnSingleElement(ByVal name As String, ByVal fclass As IFeatureClass, ByVal Privileges As SDEPrivileges)
             If Me.IsNameEquals(fclass, name) Then
                 If Me.PermissionsValidation(fclass, Privileges) Then
                     Return fclass
