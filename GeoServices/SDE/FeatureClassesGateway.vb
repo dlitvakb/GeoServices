@@ -77,8 +77,8 @@ Namespace SDE
         ''' La validación realizada acá es que sea una capa en producción y no sea de red.
         ''' Para realizar otra validación se debe generar una subclase que sobreescriba este método
         ''' </remarks>
-        Protected Overridable Function isValid(ByVal dataset As IDataset, Optional ByVal RequiresEditorPriviledges As Boolean = True) As Boolean
-            Return Me.validFeatureClass(dataset) AndAlso Me.validDataset(dataset) AndAlso Me.PermissionsValidation(dataset, RequiresEditorPriviledges)
+        Protected Overridable Function isValid(ByVal dataset As IDataset, Optional ByVal Privileges As SDE.SDEPermissions = SDEPermissions.SDEEdit) As Boolean
+            Return Me.validFeatureClass(dataset) AndAlso Me.validDataset(dataset) AndAlso Me.PermissionsValidation(dataset, Privileges)
         End Function
 
         ''' <summary>
@@ -86,7 +86,7 @@ Namespace SDE
         ''' </summary>
         ''' <returns></returns>
         ''' <remarks></remarks>
-        Protected Overrides Function doGetAll(ByVal workspace As IWorkspace, ByVal RequiresEditorPriviledges As Boolean) As System.Collections.Generic.List(Of ESRI.ArcGIS.Geodatabase.IFeatureClass)
+        Protected Overrides Function doGetAll(ByVal workspace As IWorkspace, ByVal Privileges As SDE.SDEPermissions) As System.Collections.Generic.List(Of ESRI.ArcGIS.Geodatabase.IFeatureClass)
             Dim fclasses As New List(Of IFeatureClass)
 
             Dim datasets As IEnumDataset = workspace.Datasets(esriDatasetType.esriDTFeatureDataset)
@@ -95,7 +95,7 @@ Namespace SDE
             Dim fclass As IFeatureClass = featureClasses.Next
 
             While Not fclass Is Nothing
-                If Me.isValid(fclass, RequiresEditorPriviledges) Then fclasses.Add(fclass)
+                If Me.isValid(fclass, Privileges) Then fclasses.Add(fclass)
                 fclass = featureClasses.Next
             End While
 
@@ -103,12 +103,12 @@ Namespace SDE
 
             Dim dataset As IFeatureDataset = datasets.Next
             While Not dataset Is Nothing
-                If TypeOf fclass Is IFeatureClass AndAlso Me.isValid(fclass, RequiresEditorPriviledges) Then fclasses.Add(dataset)
+                If TypeOf fclass Is IFeatureClass AndAlso Me.isValid(fclass, Privileges) Then fclasses.Add(dataset)
                 If Not dataset.Subsets Is Nothing Then
                     Dim subset As IEnumDataset = dataset.Subsets
                     fclass = Me.getNextFClass(subset, subset.Next)
                     While Not fclass Is Nothing
-                        If Me.isValid(fclass, RequiresEditorPriviledges) Then fclasses.Add(fclass)
+                        If Me.isValid(fclass, Privileges) Then fclasses.Add(fclass)
                         fclass = Me.getNextFClass(subset, subset.Next)
                     End While
                 End If
@@ -120,7 +120,7 @@ Namespace SDE
             Return fclasses
         End Function
 
-        Public Overrides Function GetByName(ByVal name As String, Optional ByVal connectionNumber As Integer = 0, Optional ByVal RequiresEditorPriviledges As Boolean = True) As ESRI.ArcGIS.Geodatabase.IFeatureClass
+        Public Overrides Function GetByName(ByVal name As String, Optional ByVal connectionNumber As Integer = 0, Optional ByVal Privileges As SDE.SDEPermissions = SDEPermissions.SDEEdit) As ESRI.ArcGIS.Geodatabase.IFeatureClass
             Dim wksp As IWorkspace = New XML.XMLWorkspaceGetter().GetSingleWorkspace(connectionNumber)
             If wksp Is Nothing Then Throw New DataException("No se ha provisto ningún workspace")
 
@@ -132,7 +132,7 @@ Namespace SDE
             Dim returningFClass As IFeatureClass
 
             While Not fclass Is Nothing
-                returningFClass = Me.ReturnSingleElement(name, fclass, RequiresEditorPriviledges)
+                returningFClass = Me.ReturnSingleElement(name, fclass, Privileges)
                 If Not returningFClass Is Nothing Then Return returningFClass
                 fclass = featureClasses.Next
             End While
@@ -142,14 +142,14 @@ Namespace SDE
             Dim dataset As IFeatureDataset = datasets.Next
             While Not dataset Is Nothing
                 If TypeOf dataset Is IFeatureClass Then
-                    returningFClass = Me.ReturnSingleElement(name, fclass, RequiresEditorPriviledges)
+                    returningFClass = Me.ReturnSingleElement(name, fclass, Privileges)
                     If Not returningFClass Is Nothing Then Return returningFClass
                 End If
                 If Not dataset.Subsets Is Nothing Then
                     Dim subset As IEnumDataset = dataset.Subsets
                     fclass = Me.getNextFClass(subset, subset.Next)
                     While Not fclass Is Nothing
-                        returningFClass = Me.ReturnSingleElement(name, fclass, RequiresEditorPriviledges)
+                        returningFClass = Me.ReturnSingleElement(name, fclass, Privileges)
                         If Not returningFClass Is Nothing Then Return returningFClass
                         fclass = Me.getNextFClass(subset, subset.Next)
                     End While
@@ -162,9 +162,9 @@ Namespace SDE
             Throw New DataException("El FeatureClass " & name & " no ha sido encontrado")
         End Function
 
-        Protected Function ReturnSingleElement(ByVal name As String, ByVal fclass As IFeatureClass, ByVal RequiresEditorPriviledges As Boolean)
+        Protected Function ReturnSingleElement(ByVal name As String, ByVal fclass As IFeatureClass, ByVal Privileges As SDEPermissions)
             If Me.IsNameEquals(fclass, name) Then
-                If Me.PermissionsValidation(fclass, RequiresEditorPriviledges) Then
+                If Me.PermissionsValidation(fclass, Privileges) Then
                     Return fclass
                 Else
                     Throw New DataException("El FeatureClass " & name & " no puede ser abierto para edición")

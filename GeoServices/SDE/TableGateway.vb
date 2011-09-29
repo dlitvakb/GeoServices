@@ -9,13 +9,13 @@ Namespace SDE
         ''' </summary>
         ''' <returns></returns>
         ''' <remarks>El esquema de obtención está realizado para tablas sin anidamiento que se encuentran en la raíz del SDE</remarks>
-        Protected Overrides Function doGetAll(ByVal workspace As IWorkspace, ByVal RequiresEditorPriviledges As Boolean) As System.Collections.Generic.List(Of ESRI.ArcGIS.Geodatabase.ITable)
+        Protected Overrides Function doGetAll(ByVal workspace As IWorkspace, ByVal Privileges As SDE.SDEPermissions) As System.Collections.Generic.List(Of ESRI.ArcGIS.Geodatabase.ITable)
             Dim tables As New List(Of ITable)
 
             Dim datasets As IEnumDataset = workspace.Datasets(esriDatasetType.esriDTTable)
             Dim table As IDataset = datasets.Next
             While Not table Is Nothing
-                If Me.PermissionsValidation(table, RequiresEditorPriviledges) Then tables.Add(table)
+                If Me.PermissionsValidation(table, Privileges) Then tables.Add(table)
                 table = datasets.Next
             End While
 

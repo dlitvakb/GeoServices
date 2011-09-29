@@ -51,13 +51,13 @@ Public Class FeatureClassesGatewayTest
 
     <TestMethod()>
     Public Sub FeatureClassPorNombreYConPermisosDeEdicionYFunciona()
-        Assert.IsTrue(New GeoServices.SDE.FeatureClassesGateway().GetByName("PRUEBA_PERMISOS", connectionNumber:=0, RequiresEditorPriviledges:=True).AliasName.Contains("PRUEBA_PERMISOS"))
+        Assert.IsTrue(New GeoServices.SDE.FeatureClassesGateway().GetByName("PRUEBA_PERMISOS", connectionNumber:=0, Privileges:=GeoServices.SDE.SDEPermissions.SDEEdit).AliasName.Contains("PRUEBA_PERMISOS"))
     End Sub
 
     <TestMethod()>
     Public Sub FeatureClassPorNombreYConPermisosDeEdicionYFalla()
         Try
-            Dim debe_fallar As IFeatureClass = New GeoServices.SDE.FeatureClassesGateway().GetByName("PRUEBA_PERMISOS", connectionNumber:=1, RequiresEditorPriviledges:=True)
+            Dim debe_fallar As IFeatureClass = New GeoServices.SDE.FeatureClassesGateway().GetByName("PRUEBA_PERMISOS", connectionNumber:=1, Privileges:=GeoServices.SDE.SDEPermissions.SDEEdit)
         Catch ex As DataException
             Assert.IsTrue(ex.Message = "El FeatureClass PRUEBA_PERMISOS no puede ser abierto para edición")
         End Try
@@ -65,12 +65,12 @@ Public Class FeatureClassesGatewayTest
 
     <TestMethod()>
     Public Sub FeatureClassPorNombreYSinPermisosDeEdicionYFunciona()
-        Assert.IsTrue(New GeoServices.SDE.FeatureClassesGateway().GetByName("PRUEBA_PERMISOS", connectionNumber:=1, RequiresEditorPriviledges:=False).AliasName.Contains("PRUEBA_PERMISOS"))
+        Assert.IsTrue(New GeoServices.SDE.FeatureClassesGateway().GetByName("PRUEBA_PERMISOS", connectionNumber:=1, Privileges:=GeoServices.SDE.SDEPermissions.SDESelect).AliasName.Contains("PRUEBA_PERMISOS"))
     End Sub
 
     <TestMethod()>
     Public Sub BuscoEntreTodosLosFeatureClassUnoSinPermisosDeEdicionYNoDeberiaEstar()
-        For Each fclass As IFeatureClass In New GeoServices.SDE.FeatureClassesGateway().GetAll(connectionNumber:=1, RequiresEditorPriviledges:=True)
+        For Each fclass As IFeatureClass In New GeoServices.SDE.FeatureClassesGateway().GetAll(connectionNumber:=1, Privileges:=GeoServices.SDE.SDEPermissions.SDEEdit)
             If Not New GeoServices.SDE.PrivilegesValidator(fclass).CanEdit Then Assert.Fail()
         Next
         Assert.IsTrue(True)

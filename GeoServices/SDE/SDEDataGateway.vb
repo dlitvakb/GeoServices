@@ -13,18 +13,18 @@ Public MustInherit Class SDEDataGateway(Of T As {Class})
     ''' </summary>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Function GetAll(Optional ByVal connectionNumber As Integer = 0, Optional ByVal RequiresEditorPriviledges As Boolean = True) As List(Of T)
+    Public Function GetAll(Optional ByVal connectionNumber As Integer = 0, Optional ByVal Privileges As SDE.SDEPermissions = SDE.SDEPermissions.SDEEdit) As List(Of T)
         Dim wksp As IWorkspace = New XML.XMLWorkspaceGetter().GetSingleWorkspace(connectionNumber)
         If wksp Is Nothing Then Throw New DataException("No se ha provisto ningún workspace")
 
-        Dim elements As List(Of T) = Me.doGetAll(wksp, RequiresEditorPriviledges)
+        Dim elements As List(Of T) = Me.doGetAll(wksp, Privileges)
 
         If elements.Count = 0 Then Throw New DataException("No se ha encontrado ninguna/a " & Me.GetElementName())
 
         Return elements
     End Function
 
-    Protected MustOverride Function doGetAll(ByVal workspace As IWorkspace, ByVal RequiresEditorPriviledges As Boolean) As List(Of T)
+    Protected MustOverride Function doGetAll(ByVal workspace As IWorkspace, ByVal Privileges As SDE.SDEPermissions) As List(Of T)
 
     ''' <summary>
     ''' Realiza la verificación de nombres para el objeto de SDE
@@ -55,13 +55,13 @@ Public MustInherit Class SDEDataGateway(Of T As {Class})
     ''' <param name="GetResultsAnyway"></param>
     ''' <returns></returns>
     ''' <remarks>Por defecto, si no se encuentra algún elemento, se lanza una DataException, sin embargo, cambiando GetResultsAnyway, permite obtener las que se haya encontrado</remarks>
-    Public Function GetByNameList(ByVal names As String(), Optional ByVal connectionNumber As Integer = 0, Optional ByVal GetResultsAnyway As Boolean = False, Optional ByVal RequiresEditorPriviledges As Boolean = True) As List(Of T)
-        Dim elements As List(Of T) = Me.GetAll(connectionNumber, RequiresEditorPriviledges)
+    Public Function GetByNameList(ByVal names As String(), Optional ByVal connectionNumber As Integer = 0, Optional ByVal GetResultsAnyway As Boolean = False, Optional ByVal Privileges As SDE.SDEPermissions = SDE.SDEPermissions.SDEEdit) As List(Of T)
+        Dim elements As List(Of T) = Me.GetAll(connectionNumber, Privileges)
         Dim result As New List(Of T)
 
         For Each name As String In names
             For Each element As T In elements
-                If Me.IsNameEquals(element, name) AndAlso Me.PermissionsValidation(element, RequiresEditorPriviledges) Then
+                If Me.IsNameEquals(element, name) AndAlso Me.PermissionsValidation(element, Privileges) Then
                     result.Add(element)
                     Exit For
                 End If
@@ -80,22 +80,22 @@ Public MustInherit Class SDEDataGateway(Of T As {Class})
     ''' <param name="connectionNumber"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Public Overridable Function GetByName(ByVal name As String, Optional ByVal connectionNumber As Integer = 0, Optional ByVal RequiresEditorPriviledges As Boolean = True) As T
+    Public Overridable Function GetByName(ByVal name As String, Optional ByVal connectionNumber As Integer = 0, Optional ByVal Privileges As SDE.SDEPermissions = SDE.SDEPermissions.SDEEdit) As T
         Try
-            Return Me.GetByNameList({name}, connectionNumber, RequiresEditorPriviledges:=RequiresEditorPriviledges)(0)
+            Return Me.GetByNameList({name}, connectionNumber, Privileges:=Privileges)(0)
         Catch ex As Exception
             Throw New DataException("El/La " & Me.GetElementName() & " " & name & " no se ha encontrado", ex)
         End Try
     End Function
 
     ''' <summary>
-    ''' Realiza chequeos de permisos de edición
+    ''' Realiza chequeos de permisos sobre los objetos SDE
     ''' </summary>
     ''' <param name="element"></param>
     ''' <returns></returns>
     ''' <remarks></remarks>
-    Protected Overridable Function PermissionsValidation(ByVal element As T, Optional ByVal RequiresEditorPriviledges As Boolean = True) As Boolean
-        Return IIf(RequiresEditorPriviledges, New SDE.PrivilegesValidator(element).CanEdit, New SDE.PrivilegesValidator(element).CanSelect)
+    Protected Overridable Function PermissionsValidation(ByVal element As T, Optional ByVal Privileges As SDE.SDEPermissions = SDE.SDEPermissions.SDEEdit) As Boolean
+        Return IIf(Privileges, New SDE.PrivilegesValidator(element).HasPermissions(Privileges), New SDE.PrivilegesValidator(element).CanSelect)
     End Function
 
     Protected Function SanitizeString(ByVal text As String) As String
