@@ -94,7 +94,7 @@
     <Compile Include="SDE\EditingWorkspace.vb" />
     <Compile Include="SDE\PrivilegesValidator.vb" />
     <Compile Include="SDE\SDEDataGateway.vb" />
-    <Compile Include="SDE\SDEPermissions.vb" />
+    <Compile Include="SDE\SDEPrivileges.vb" />
     <Compile Include="SDE\WorkspaceConnection.vb" />
     <Compile Include="Logger\FileEventLogger.vb" />
     <Compile Include="Security\PrivateEncrypt.vb" />
