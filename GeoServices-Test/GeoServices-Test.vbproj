@@ -82,7 +82,7 @@
     <Compile Include="Logger\LoggerTest.vb" />
     <Compile Include="Logger\MockLogger.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
-    <Compile Include="SDE\EditingWorkspaceTest.vb" />
+    <Compile Include="SDE\EditingObjectsTest.vb" />
     <Compile Include="SDE\WorkspaceConnectionTest.vb" />
     <Compile Include="Security\EncryptTest.vb" />
     <Compile Include="SDE\FeatureClassesGatewayTest.vb" />

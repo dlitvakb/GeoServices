@@ -8,17 +8,17 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("GeoServices")> 
-<Assembly: AssemblyDescription("Framework para desarrollo de aplicaciones GIS utilizado ArcSDE")> 
-<Assembly: AssemblyCompany("ConsultoresGIS S.R.L.")> 
-<Assembly: AssemblyProduct("GeoServices")> 
-<Assembly: AssemblyCopyright("David Litvak Bruno ©  2011")> 
+<Assembly: AssemblyTitle("EjemploGeoService")> 
+<Assembly: AssemblyDescription("")> 
+<Assembly: AssemblyCompany("")> 
+<Assembly: AssemblyProduct("EjemploGeoService")> 
+<Assembly: AssemblyCopyright("Copyright ©  2011")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("ce377fff-57f1-4cbd-a31b-eae1cc8973ae")> 
+<Assembly: Guid("346529cd-4508-4631-b20d-c516ccfc5274")> 
 
 ' Version information for an assembly consists of the following four values:
 '
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("2.3.*")> 
-<Assembly: AssemblyFileVersion("2.3.0")> 
+<Assembly: AssemblyVersion("1.0.0.0")> 
+<Assembly: AssemblyFileVersion("1.0.0.0")> 

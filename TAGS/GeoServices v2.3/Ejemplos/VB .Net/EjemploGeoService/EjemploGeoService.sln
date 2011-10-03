@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "EjemploGeoService", "EjemploGeoService\EjemploGeoService.vbproj", "{33E6A62C-F4D7-4A90-AEDA-D81B9E2D8B78}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{33E6A62C-F4D7-4A90-AEDA-D81B9E2D8B78}.Debug|x86.ActiveCfg = Debug|x86
+		{33E6A62C-F4D7-4A90-AEDA-D81B9E2D8B78}.Debug|x86.Build.0 = Debug|x86
+		{33E6A62C-F4D7-4A90-AEDA-D81B9E2D8B78}.Release|x86.ActiveCfg = Release|x86
+		{33E6A62C-F4D7-4A90-AEDA-D81B9E2D8B78}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
