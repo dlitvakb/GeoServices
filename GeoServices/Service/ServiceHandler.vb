@@ -57,7 +57,7 @@ Public Class ServiceHandler
 
     Private Sub start()
         Try
-            If XML.XMLScheduleGetter.getSchedule().Contains(System.DateTime.Now.ToShortTimeString()) Then
+            If XML.XMLScheduleGetter.getSchedule().Contains(System.DateTime.Now.ToString("HH:mm")) Then
                 Me.oTimer.Change(60000, System.Threading.Timeout.Infinite)
                 Me.InitializeLogger()
                 Me.doWork()
