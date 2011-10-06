@@ -1,0 +1,320 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+GeoServices
+</name>
+</assembly>
+<members>
+<member name="P:GeoServices.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:GeoServices.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:GeoServices.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="T:GeoServices.Logger.Logger">
+	<summary>
+ Wrapper para logging de servicios con acceso al event viewer y archivos log de texto
+ </summary>
+	<remarks>Se debe especificar el nombre de la aplicación en el Config.xml</remarks>
+</member><member name="M:GeoServices.SDE.EditingDataset.StartEditing(System.Boolean)">
+	<summary>
+ Inicia sesión de edición
+ </summary>
+</member><member name="M:GeoServices.SDE.EditingDataset.StartEditOperation">
+	<summary>
+ Inicia una operación de edición
+ </summary>
+</member><member name="M:GeoServices.SDE.EditingDataset.StopEditOperation">
+	<summary>
+ Finaliza una operación de edición
+ </summary>
+</member><member name="M:GeoServices.SDE.EditingDataset.StopEditing(System.Boolean)">
+	<summary>
+ Finaliza la sesión de edición
+ </summary>
+</member><member name="M:GeoServices.SDE.EditingDataset.getWorkspace">
+	<summary>
+ Retorna el Workspace de edición
+ </summary>
+</member><member name="M:GeoServices.SDE.EditingDataset.isVersioned">
+	<summary>
+ Informa si el dataset se encuentra bajo control de versiones
+ </summary>
+</member><member name="M:GeoServices.SDE.TableGateway.doGetAll(ESRI.ArcGIS.Geodatabase.IWorkspace,GeoServices.SDE.SDEPrivileges)">
+	<summary>
+ Obtiene todas las tablas del SDE para la conexión especificada
+ </summary>
+	<remarks>El esquema de obtención está realizado para tablas sin anidamiento que se encuentran en la raíz del SDE</remarks>
+</member><member name="M:GeoServices.SDE.SDEDataGateway`1.GetAll(System.Int32,GeoServices.SDE.SDEPrivileges)">
+	<summary>
+ Permite obtener todos los elementos del tipo especificado en la subclase presentes en el SDE para la conexión especificada.
+ Por defecto retorna unicamente los elementos para los cuales se tienen permisos de edición, para obtener todos los elementos
+ en el parámetro RequiresEditorPriviledges poner el valor False
+ </summary>
+</member><member name="M:GeoServices.SDE.SDEDataGateway`1.IsNameEquals(`0,System.String)">
+	<summary>
+ Realiza la verificación de nombres para el objeto de SDE
+ </summary>
+</member><member name="M:GeoServices.SDE.SDEDataGateway`1.GetByNameList(System.String[],System.Int32,System.Boolean,GeoServices.SDE.SDEPrivileges)">
+	<summary>
+ Permite obtener elementos del SDE en base a una lista de nombres
+ </summary>
+	<remarks>Por defecto, si no se encuentra algún elemento, se lanza una DataException, sin embargo, cambiando GetResultsAnyway, permite obtener las que se haya encontrado</remarks>
+</member><member name="M:GeoServices.SDE.SDEDataGateway`1.GetByName(System.String,System.Int32,GeoServices.SDE.SDEPrivileges)">
+	<summary>
+ Permite obtener elementos singulares dentro del SDE
+ </summary>
+</member><member name="M:GeoServices.SDE.SDEDataGateway`1.PermissionsValidation(`0,GeoServices.SDE.SDEPrivileges)">
+	<summary>
+ Realiza chequeos de permisos sobre los objetos SDE
+ </summary>
+</member><member name="M:GeoServices.SDE.SDEDataGateway`1.doGetByName(System.String,ESRI.ArcGIS.Geodatabase.IFeatureWorkspace)">
+	<summary>
+ Obtiene los elementos por nombre del SDE
+ </summary>
+</member><member name="T:GeoServices.SDE.SDEDataGateway`1">
+	<summary>
+ Clase abstracta que permite la obtención genérica de datos del SDE
+ </summary>
+	<typeparam name="T">Clase que representa al elemento a obtener del SDE. Por Ejemplo: IFeatureClass, ITable</typeparam>
+</member><member name="M:GeoServices.SDE.WorkspaceConnection.GetWorkspace">
+	<summary>
+ Obtiene el workspace asociado a la conexión
+ </summary>
+</member><member name="T:GeoServices.SDE.WorkspaceConnection">
+	<summary>
+ Permite obtener Workspaces a partir de los datos de conexión provistos a GeoServices
+ </summary>
+	<remarks>El password debe encontrarse encriptado localmente con la herramienta provista</remarks>
+</member><member name="M:GeoServices.XML.XMLWorkspaceGetter.GetAllConnections">
+	<summary>
+ Obtiene una lista de propiedades de conexiones
+ </summary>
+</member><member name="M:GeoServices.XML.XMLWorkspaceGetter.GetSingleConnection(System.Int32)">
+	<summary>
+ Obtiene una lista de elementos que conforman las propiedades de conexión necesarias para una Base de Datos SDE
+ </summary>
+</member><member name="M:GeoServices.XML.XMLWorkspaceGetter.GetSingleWorkspace(System.Int32)">
+	<summary>
+ Obtiene la conexion a una base de datos SDE
+ </summary>
+	<returns>Retorna un SdeWorkspace</returns>
+</member><member name="M:GeoServices.XML.XMLWorkspaceGetter.GetAllWorkspaces">
+	<summary>
+ Obtiene una lista de workspaces a partir de las conexiones especificadas
+ </summary>
+</member><member name="T:GeoServices.XML.XMLWorkspaceGetter">
+	<summary>
+ Obtiene Conexiones a una base de datos SDE a partir de la configuración especificada en Config.xml
+ </summary>
+</member><member name="M:GeoServices.XML.XMLScheduleGetter.getSchedule">
+	<summary>
+ Obtiene una lista de horarios para los cuales está configurado el servicio
+ </summary>
+	<returns>Lista de horarios en formato HH:mm</returns>
+</member><member name="T:GeoServices.XML.XMLScheduleGetter">
+	<summary>
+ Obtiene el itinerario del archivo Config.xml
+ </summary>
+</member><member name="M:GeoServices.Worker.WorkingComponent.doExecute">
+	<summary>
+ En este método se debe especificar el flujo de ejecución del servicio
+ </summary>
+	<remarks>
+ Como buena práctica se considera correcto el realizar unicamente delegaciones
+ o llamadas a otros métodos desde este. Evitar los condicionales o bucles en este método
+ permite una mayor limpieza en el código y mejora notablemente la mantenibilidad
+ </remarks>
+</member><member name="T:GeoServices.Worker.WorkingComponent">
+	<summary>
+ Wrapper de GeoService
+ Inicializa licencia y captura errores
+ Esta clase debe ser heredada y sus subclases llamadas desde el método doWork() de las subclases de ServiceHandler
+ </summary>
+	<remarks>
+ Los errores generados por el usuario deben ser del tipo DataException
+ Los errores generados por ESRI son del tipo COMException
+ Dichas excepciones no interrumpirán el flujo de ejecución, 
+ y son consideradas como intermedias (usuario) o graves (framework), 
+ pero no detendrán la ejecución del servicio, ya que deben ser consideradas 
+ como un error de configuración en el Config.xml
+ 
+ En caso de requerir otro tipo de excepción, ServiceHandler provee el manejo de excepciones
+ consideradas como intermedias y graves que ameritan la detención del servicio.
+ UnauthorizedAccessException es considerada intermedia y es utilizada para
+ el aviso de una instanciación ilegal de una clase o la falta de licencia del producto.
+ Exception es cualquier otro tipo de excepción (arrojada por el usuario) que sea considerada grave,
+ la misma detendrá la ejecución del servicio.
+ </remarks>
+</member><member name="M:GeoServices.ServiceHandler.OnStart(System.String[])">
+	<summary>
+ Wrapper de todas las acciones del servicio
+ Inicia el log, mantiene actualizada la lista de horarios de Config.xml y da inicio a las acciones especificadas en las subclases
+ </summary>
+</member><member name="M:GeoServices.ServiceHandler.doWork">
+	<summary>
+ En este método se debe invocar a la instancia adecuada que herede 
+ de WorkingComponent para utilizar un GeoService o hacer una llamada
+ a la clase que se considere apropiada en otro caso
+ </summary>
+	<remarks>Este método debe ser Overrideado para poder utilizar el template del Servicio</remarks>
+</member><member name="M:GeoServices.ServiceHandler.InitializeLogger">
+	<summary>
+ En este método se debe invocar a la instancia adecuada que herede 
+ de Logger para utilizar el logging
+ Por defecto utiliza la herramienta de logging provista por GeoServices
+ </summary>
+	<remarks>Por defecto utiliza la herramienta de logging provista por GeoServices</remarks>
+</member><member name="T:GeoServices.ServiceHandler">
+	<summary>
+ Template para Servicios de ConsultoresGIS
+ Debe crearse una clase que herede de la misma.
+ Caso contrario... arroja excepción de acceso no autorizado
+ </summary>
+	<remarks>
+ Esta clase no debe ser instanciada directamente
+ Se debe Overridear doWork
+ </remarks>
+</member><member name="M:GeoServices.SDE.PrivilegesValidator.GetPrivileges">
+	<summary>
+ Retorna el valor que ESRI le otorga a los privilegios
+ </summary>
+</member><member name="P:GeoServices.SDE.PrivilegesValidator.CanEdit">
+	<summary>
+ Informa si se pueden realizar todas las operaciones sobre un objeto SDE
+ </summary>
+</member><member name="P:GeoServices.SDE.PrivilegesValidator.CanSelect">
+	<summary>
+ Informa si se puede visualizar un objeto SDE
+ </summary>
+</member><member name="P:GeoServices.SDE.PrivilegesValidator.CanInsert">
+	<summary>
+ Informa si se pueden ingresar nuevos datos en un objeto SDE
+ </summary>
+</member><member name="P:GeoServices.SDE.PrivilegesValidator.CanUpdate">
+	<summary>
+ Informa si se pueden modificar los datos sobre un objeto SDE
+ </summary>
+</member><member name="P:GeoServices.SDE.PrivilegesValidator.CanDelete">
+	<summary>
+ Informa si se pueden eliminar los datos de un objeto SDE
+ </summary>
+</member><member name="M:GeoServices.SDE.PrivilegesValidator.CanDoAction(System.Int32[])">
+	<summary>
+ Función auxiliar para los cálculos necesarios de permisos (ya que por cada acción hay un conjunto de valores posibles, esta función evalua dicha lista)
+ </summary>
+	<param name="possiblePrivilegeValues"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="M:GeoServices.SDE.PrivilegesValidator.HasPrivileges(GeoServices.SDE.SDEPrivileges)">
+	<summary>
+ Informa si se tienen permisos para la acción pedida
+ </summary>
+	<param name="PermissionLevel"></param>
+	<returns></returns>
+	<remarks></remarks>
+</member><member name="T:GeoServices.SDE.PrivilegesValidator">
+	<summary>
+ Permite conocer los permisos sobre un objeto SDE para la conexión actual
+ </summary>
+</member><member name="T:GeoServices.Logger.ServiceEventWriter">
+	<summary>
+ Provee la interfaz para el event viewer
+ </summary>
+	<remarks>Se debe especificar el nombre de la aplicación en Config.xml</remarks>
+</member><member name="M:GeoServices.XML.XMLGetter.getXml">
+	<summary>
+ Provee acceso al archivo Config.xml de forma transparente
+ </summary>
+</member><member name="M:GeoServices.XML.XMLGetter.getSingleXMLElement(System.String,System.Int32)">
+	<summary>
+ Provee acceso al primer elemento que tenga el nombre especificado
+ </summary>
+	<exception cref="T:System.Xml.XmlException">Si no existe el elemento arroja excepción</exception>
+</member><member name="M:GeoServices.XML.XMLGetter.getElements(System.String)">
+	<summary>
+ Provee acceso a todos los elementos que tengan el nombre especificado
+ </summary>
+</member><member name="T:GeoServices.SDE.SDEPrivileges">
+	<summary>
+ Valores de posibles permisos en los objetos SDE.
+ SDEEdit es la combinacion de todos los permisos
+ </summary>
+</member><member name="M:GeoServices.License.LicenseInitializer.InitializeLicense">
+	<summary>
+ Inicializa la licencia, para que sea exitoso, se debe tener una de las siguientes 4 licencias (las cuales tienen permisos sobre SDE) 
+ y seran buscadas en el siguiente orden:
+ 1) ArcServer
+ 2) ArcEngine Geodatabase Extension
+ 3) ArcEditor
+ 4) ArcInfo
+ </summary>
+</member><member name="M:GeoServices.License.LicenseInitializer.ReleaseLicense">
+	<summary>
+ Libera la licencia
+ </summary>
+</member><member name="T:GeoServices.License.LicenseInitializer">
+	<summary>
+ Inicializador de licencias
+ </summary>
+	<remarks>Es utilizado para comprobar que las licencias activas tienen permisos de edición sobre el SDE</remarks>
+</member><member name="M:GeoServices.SDE.FeatureClassesGateway.getNextFClass(ESRI.ArcGIS.Geodatabase.IEnumDataset@,ESRI.ArcGIS.Geodatabase.IDataset)">
+	<summary>
+ Retorna el siguiente Feature Class
+ </summary>
+</member><member name="M:GeoServices.SDE.FeatureClassesGateway.isFClass(ESRI.ArcGIS.Geodatabase.IDataset)">
+	<summary>
+ Retorna si el Dataset ingresado es Feature Class
+ </summary>
+</member><member name="M:GeoServices.SDE.FeatureClassesGateway.validDataset(ESRI.ArcGIS.Geodatabase.IDataset)">
+	<summary>
+ Realiza la validación de un dataset (Feature Class, Tabla, Feature Dataset...) según lo especificado
+ </summary>
+	<remarks>
+ La validación realizada acá es que sea una capa en producción y no sea de red.
+ Para realizar otra validación se debe generar una subclase que sobreescriba este método
+ </remarks>
+</member><member name="M:GeoServices.SDE.FeatureClassesGateway.validFeatureClass(ESRI.ArcGIS.Geodatabase.IFeatureClass)">
+	<summary>
+ Realiza la validación de un dataset (Feature Class, Tabla, Feature Dataset...) según lo especificado
+ </summary>
+	<remarks>
+ La validación realizada acá es que sea una capa en producción y no sea de red.
+ Para realizar otra validación se debe generar una subclase que sobreescriba este método
+ </remarks>
+</member><member name="M:GeoServices.SDE.FeatureClassesGateway.isValid(ESRI.ArcGIS.Geodatabase.IDataset,GeoServices.SDE.SDEPrivileges)">
+	<summary>
+ Realiza la validación de un dataset (Feature Class, Tabla, Feature Dataset...) según lo especificado
+ </summary>
+	<remarks>
+ La validación realizada acá es que sea una capa en producción y no sea de red.
+ Para realizar otra validación se debe generar una subclase que sobreescriba este método
+ </remarks>
+</member><member name="M:GeoServices.SDE.FeatureClassesGateway.doGetAll(ESRI.ArcGIS.Geodatabase.IWorkspace,GeoServices.SDE.SDEPrivileges)">
+	<summary>
+ Obtiene una lista de todos los FeatureClasses para la conexión especificada
+ </summary>
+</member><member name="T:GeoServices.SDE.FeatureClassesGateway">
+	<summary>
+ Permite obtener FeatureClasses y Tablas de una base de datos SDE
+ </summary>
+	<remarks>
+ Los esquemas de obtención de datos están adaptados siguiente formato:
+     SDE -&gt; FeatureClasses (muchos),
+     SDE -&gt; FeatureDatasets (muchos) -&gt; FeatureClasses (muchos)
+ 
+ Si se desea alterar, debe crease una nueva clase que herede de XMLGetter.
+ En caso de querer el mismo esquema, pero requerir una validación diferente para los FeatureClass o Tablas
+ se debe crear una clase que herede de esta y sobreescribir el método isValid realizando la validación correspondiente 
+ </remarks>
+</member>
+</members>
+</doc>
