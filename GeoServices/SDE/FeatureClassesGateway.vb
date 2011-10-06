@@ -105,48 +105,6 @@ Namespace SDE
             Return fclasses
         End Function
 
-        Public Overrides Function GetByName(ByVal name As String, Optional ByVal connectionNumber As Integer = 0, Optional ByVal Privileges As SDE.SDEPrivileges = SDEPrivileges.SDEEdit) As ESRI.ArcGIS.Geodatabase.IFeatureClass
-            Dim wksp As IWorkspace = New XML.XMLWorkspaceGetter().GetSingleWorkspace(connectionNumber)
-            If wksp Is Nothing Then Throw New DataException("No se ha provisto ningún workspace")
-
-            Dim datasets As IEnumDataset = wksp.Datasets(esriDatasetType.esriDTFeatureDataset)
-            Dim featureClasses As IEnumDataset = wksp.Datasets(esriDatasetType.esriDTFeatureClass)
-
-            Dim fclass As IFeatureClass = featureClasses.Next
-
-            Dim returningFClass As IFeatureClass
-
-            While Not fclass Is Nothing
-                returningFClass = Me.ReturnSingleElement(name, fclass, Privileges)
-                If Not returningFClass Is Nothing Then Return returningFClass
-                fclass = featureClasses.Next
-            End While
-
-            System.Runtime.InteropServices.Marshal.ReleaseComObject(featureClasses)
-
-            Dim dataset As IFeatureDataset = datasets.Next
-            While Not dataset Is Nothing
-                If TypeOf dataset Is IFeatureClass Then
-                    returningFClass = Me.ReturnSingleElement(name, fclass, Privileges)
-                    If Not returningFClass Is Nothing Then Return returningFClass
-                End If
-                If Not dataset.Subsets Is Nothing Then
-                    Dim subset As IEnumDataset = dataset.Subsets
-                    fclass = Me.getNextFClass(subset, subset.Next)
-                    While Not fclass Is Nothing
-                        returningFClass = Me.ReturnSingleElement(name, fclass, Privileges)
-                        If Not returningFClass Is Nothing Then Return returningFClass
-                        fclass = Me.getNextFClass(subset, subset.Next)
-                    End While
-                End If
-                dataset = datasets.Next
-            End While
-
-            System.Runtime.InteropServices.Marshal.ReleaseComObject(datasets)
-
-            Throw New DataException("El FeatureClass " & name & " no ha sido encontrado")
-        End Function
-
         Protected Function ReturnSingleElement(ByVal name As String, ByVal fclass As IFeatureClass, ByVal Privileges As SDEPrivileges)
             If Me.IsNameEquals(fclass, name) Then
                 If Me.PermissionsValidation(fclass, Privileges) Then
@@ -158,16 +116,12 @@ Namespace SDE
             End If
         End Function
 
-        Protected Overrides Function GetElementName() As String
-            Return "Feature Class"
-        End Function
-
-        Protected Overrides Function GetPluralName() As String
-            Return "Feature Classes"
-        End Function
-
         Protected Overrides Function IsNameEquals(ByVal element As ESRI.ArcGIS.Geodatabase.IFeatureClass, ByVal name As String) As Boolean
             Return CType(element, IDataset).Name.ToUpper().Contains(name.ToUpper()) OrElse element.AliasName.ToUpper().Contains(name.ToUpper())
+        End Function
+
+        Protected Overrides Function doGetByName(ByVal name As String, ByVal workspace As ESRI.ArcGIS.Geodatabase.IFeatureWorkspace) As ESRI.ArcGIS.Geodatabase.IFeatureClass
+            Return workspace.OpenFeatureClass(name)
         End Function
     End Class
 End Namespace

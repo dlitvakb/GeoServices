@@ -16,56 +16,56 @@ Public Class FeatureClassesGatewayTest
     <TestMethod()>
     Public Sub ObtenerFeatureClassPorNombre()
         Dim FClassTest = New GeoServices.SDE.FeatureClassesGateway().GetAll()(0)
-        Assert.IsTrue(New GeoServices.SDE.FeatureClassesGateway().GetByName(FClassTest.AliasName).AliasName = FClassTest.AliasName)
+        Assert.IsTrue(New GeoServices.SDE.FeatureClassesGateway().GetByName(CType(FClassTest, IDataset).Name).AliasName = FClassTest.AliasName)
     End Sub
 
     <TestMethod()>
     Public Sub FeatureClassPorNombreNoEncontrado()
         Try
-            Dim fclass As IFeatureClass = New GeoServices.SDE.FeatureClassesGateway().GetByName("Cualquier_Cosa")
+            Dim fclass As IFeatureClass = New GeoServices.SDE.FeatureClassesGateway().GetByName("FRUTA.Cualquier_Cosa")
             Assert.Fail()
         Catch ex As DataException
-            Assert.IsTrue(ex.Message = "El FeatureClass " & "Cualquier_Cosa" & " no ha sido encontrado")
+            Assert.IsTrue(ex.Message = "El elemento " & "FRUTA.Cualquier_Cosa" & " no se ha encontrado")
         End Try
     End Sub
 
     <TestMethod()>
     Public Sub ObtenerFeatureClassPorListaDeNombres()
-        Assert.IsTrue(Not New GeoServices.SDE.FeatureClassesGateway().GetByNameList({"FAC_ACU_TRAMOS"})(0) Is Nothing)
+        Assert.IsTrue(Not New GeoServices.SDE.FeatureClassesGateway().GetByNameList({"AH_SDE.FAC_Acu_Tramos"})(0) Is Nothing)
     End Sub
 
     <TestMethod()>
     Public Sub FeatureClassPorListaDeNombresNoEncontrado()
         Try
-            Dim fclass As IFeatureClass = New GeoServices.SDE.FeatureClassesGateway().GetByNameList({"Cualquier_Cosa"})(0)
+            Dim fclass As IFeatureClass = New GeoServices.SDE.FeatureClassesGateway().GetByNameList({"FRUTA.Cualquier_Cosa"})(0)
             Assert.Fail()
         Catch ex As DataException
-            Assert.IsTrue(ex.Message = "No se encontraron Feature Classes para los nombres especificados")
+            Assert.IsTrue(ex.Message = "No se encontraron elementos para los nombres especificados")
         End Try
     End Sub
 
     <TestMethod()>
     Public Sub FeatureClassPorListaDeNombresYEncuentroSoloAlgunas()
-        Assert.IsTrue(New GeoServices.SDE.FeatureClassesGateway().GetByNameList({"Cualquier_Cosa", "FAC_ACU_TRAMOS"}, GetResultsAnyway:=True).Count = 1)
+        Assert.IsTrue(New GeoServices.SDE.FeatureClassesGateway().GetByNameList({"AH_SDE.Cualquier_Cosa", "AH_SDE.FAC_ACU_TRAMOS"}, GetResultsAnyway:=True).Count = 1)
     End Sub
 
     <TestMethod()>
     Public Sub FeatureClassPorNombreYConPermisosDeEdicionYFunciona()
-        Assert.IsTrue(New GeoServices.SDE.FeatureClassesGateway().GetByName("PRUEBA_PERMISOS", connectionNumber:=0, Privileges:=GeoServices.SDE.SDEPrivileges.SDEEdit).AliasName.Contains("PRUEBA_PERMISOS"))
+        Assert.IsTrue(New GeoServices.SDE.FeatureClassesGateway().GetByName("SDE.PRUEBA_PERMISOS", connectionNumber:=0, Privileges:=GeoServices.SDE.SDEPrivileges.SDEEdit).AliasName.Contains("PRUEBA_PERMISOS"))
     End Sub
 
     <TestMethod()>
     Public Sub FeatureClassPorNombreYConPermisosDeEdicionYFallaPorqueNoTengoPermisos()
         Try
-            Dim debe_fallar As IFeatureClass = New GeoServices.SDE.FeatureClassesGateway().GetByName("PRUEBA_PERMISOS", connectionNumber:=1, Privileges:=GeoServices.SDE.SDEPrivileges.SDEEdit)
+            Dim debe_fallar As IFeatureClass = New GeoServices.SDE.FeatureClassesGateway().GetByName("SDE.PRUEBA_PERMISOS", connectionNumber:=1, Privileges:=GeoServices.SDE.SDEPrivileges.SDEEdit)
         Catch ex As DataException
-            Assert.IsTrue(ex.Message = "El FeatureClass PRUEBA_PERMISOS no puede ser abierto para edición")
+            Assert.IsTrue(ex.Message = "No se tienen permisos suficientes para acceder al elemento")
         End Try
     End Sub
 
     <TestMethod()>
     Public Sub FeatureClassPorNombreYSinPermisosDeEdicionYFunciona()
-        Assert.IsTrue(New GeoServices.SDE.FeatureClassesGateway().GetByName("PPP", connectionNumber:=1, Privileges:=GeoServices.SDE.SDEPrivileges.SDESelect).AliasName.Contains("PPP"))
+        Assert.IsTrue(New GeoServices.SDE.FeatureClassesGateway().GetByName("AH_SDE.PPP_VERSIONADO_SINPERMISOS", connectionNumber:=1, Privileges:=GeoServices.SDE.SDEPrivileges.SDESelect).AliasName.Contains("PPP"))
     End Sub
 
     <TestMethod()>
@@ -74,6 +74,15 @@ Public Class FeatureClassesGatewayTest
             If Not New GeoServices.SDE.PrivilegesValidator(fclass).CanEdit Then Assert.Fail()
         Next
         Assert.IsTrue(True)
+    End Sub
+
+    <TestMethod()>
+    Public Sub BuscoLasCapasDeEncabezadoGeografico()
+        Dim fclasses As List(Of IFeatureClass) = New GeoServices.SDE.FeatureClassesGateway().GetByNameList({"AH_SDE.FAC_INSTALACIONES", "AH_SDE.FAC_OLEO_COLECTORES", "AH_SDE.FAC_GAS_COLECTORES", "AH_SDE.FAC_ACU_SATELITES", "AH_SDE.FAC_TANQUES", "AH_SDE.FAC_ELECTRICAS"}, Privileges:=GeoServices.SDE.SDEPrivileges.SDESelect)
+        Assert.IsTrue(fclasses.Count = 6)
+
+        fclasses = New GeoServices.SDE.FeatureClassesGateway().GetByNameList({"AH_SDE.ADT_Yacimientos", "AH_SDE.ADT_AreasConcesion", "AH_SDE.GEN_DistritosExplota_SJ", "AH_SDE.GEN_Provincias", "AH_SDE.GEN_Departamentos", "AH_SDE.ADT_AreasConcesion", "AH_SDE.ADT_AreasConcesion"}, Privileges:=GeoServices.SDE.SDEPrivileges.SDESelect)
+        Assert.IsTrue(fclasses.Count = 7)
     End Sub
 
     <ClassCleanup()> Public Shared Sub MyClassCleanup()

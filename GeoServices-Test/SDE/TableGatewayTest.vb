@@ -47,37 +47,37 @@ Public Class TableGatewayTest
 
     <TestMethod()>
     Public Sub ObtenerUnaTablaPorNombre()
-        Assert.IsTrue(CType(New GeoServices.SDE.TableGateway().GetByName("TBSEG_USUARIOSCONTROL"), IDataset).Name.ToUpper.Contains("TBSEG_USUARIOSCONTROL"))
+        Assert.IsTrue(CType(New GeoServices.SDE.TableGateway().GetByName("AH_SDE.TBSEG_USUARIOSCONTROL"), IDataset).Name.ToUpper.Contains("TBSEG_USUARIOSCONTROL"))
     End Sub
 
     <TestMethod()>
     Public Sub UnaTablaNoEncontradaPorNombre()
         Try
-            Dim tabla As ITable = New GeoServices.SDE.TableGateway().GetByName("Cualquier_Cosa")
+            Dim tabla As ITable = New GeoServices.SDE.TableGateway().GetByName("FRUTA.Cualquier_Cosa")
             Assert.Fail()
         Catch ex As DataException
-            Assert.IsTrue(ex.Message = "El/La Tabla " & "Cualquier_Cosa" & " no se ha encontrado")
+            Assert.IsTrue(ex.Message = "El elemento " & "FRUTA.Cualquier_Cosa" & " no se ha encontrado")
         End Try
     End Sub
 
     <TestMethod()>
     Public Sub ObtenerTablasPorListaDeNombres()
-        Assert.IsTrue(CType(New GeoServices.SDE.TableGateway().GetByNameList({"TBSEG_USUARIOSCONTROL"})(0), IDataset).Name.ToUpper.Contains("TBSEG_USUARIOSCONTROL"))
+        Assert.IsTrue(CType(New GeoServices.SDE.TableGateway().GetByNameList({"AH_SDE.TBSEG_USUARIOSCONTROL"})(0), IDataset).Name.ToUpper.Contains("TBSEG_USUARIOSCONTROL"))
     End Sub
 
     <TestMethod()>
     Public Sub ObtenerTablasPorListaDeNombresYFalloPorqueMandeFruta()
         Try
-            Dim tabla As ITable = New GeoServices.SDE.TableGateway().GetByNameList({"Cualquier_Cosa"})
+            Dim tabla As ITable = New GeoServices.SDE.TableGateway().GetByNameList({"FRUTA.Cualquier_Cosa"})
             Assert.Fail()
         Catch ex As DataException
-            Assert.IsTrue(ex.Message = "No se encontraron Tablas para los nombres especificados")
+            Assert.IsTrue(ex.Message = "No se encontraron elementos para los nombres especificados")
         End Try
     End Sub
 
     <TestMethod()>
     Public Sub ObtenerTablasPorListaDeNombresYPermitirVacios()
-        Assert.IsTrue(New GeoServices.SDE.TableGateway().GetByNameList({"TBSEG_USUARIOSCONTROL", "Cualquier_Cosa"}, GetResultsAnyway:=True).Count = 1)
+        Assert.IsTrue(New GeoServices.SDE.TableGateway().GetByNameList({"AH_SDE.TBSEG_USUARIOSCONTROL", "FRUTA.Cualquier_Cosa"}, GetResultsAnyway:=True).Count = 1)
     End Sub
 
     <TestMethod()>

@@ -17,7 +17,7 @@ Namespace SDE
 
             Dim elements As List(Of T) = Me.doGetAll(wksp, Privileges)
 
-            If elements.Count = 0 Then Throw New DataException("No se ha encontrado ninguna/a " & Me.GetElementName())
+            If elements.Count = 0 Then Throw New DataException("No se ha encontrado ningun elemento")
 
             Return elements
         End Function
@@ -30,33 +30,21 @@ Namespace SDE
         Protected MustOverride Function IsNameEquals(ByVal element As T, ByVal name As String) As Boolean
 
         ''' <summary>
-        ''' Obtiene el nombre del tipo de elemento a utilizar por la clase para ser mostrado en la descripción del error
-        ''' </summary>
-        Protected MustOverride Function GetElementName() As String
-
-        ''' <summary>
-        ''' Obtiene el nombre del tipo de elemento a utilizar por la clase para ser mostrado en la descripción del error
-        ''' </summary>
-        Protected MustOverride Function GetPluralName() As String
-
-        ''' <summary>
         ''' Permite obtener elementos del SDE en base a una lista de nombres
         ''' </summary>
         ''' <remarks>Por defecto, si no se encuentra algún elemento, se lanza una DataException, sin embargo, cambiando GetResultsAnyway, permite obtener las que se haya encontrado</remarks>
         Public Function GetByNameList(ByVal names As String(), Optional ByVal connectionNumber As Integer = 0, Optional ByVal GetResultsAnyway As Boolean = False, Optional ByVal Privileges As SDE.SDEPrivileges = SDE.SDEPrivileges.SDEEdit) As List(Of T)
-            Dim elements As List(Of T) = Me.GetAll(connectionNumber, Privileges)
             Dim result As New List(Of T)
 
             For Each name As String In names
-                For Each element As T In elements
-                    If Me.IsNameEquals(element, name) AndAlso Me.PermissionsValidation(element, Privileges) Then
-                        result.Add(element)
-                        Exit For
+                Try
+                    result.Add(Me.GetByName(name, connectionNumber, Privileges))
+                Catch ex As Exception
+                    If Not GetResultsAnyway Then : Throw New DataException("No se encontraron elementos para los nombres especificados", ex)
+                    Else : Continue For
                     End If
-                Next
+                End Try
             Next
-
-            If result.Count <> names.Length AndAlso Not GetResultsAnyway Then Throw New DataException("No se encontraron " & Me.GetPluralName() & " para los nombres especificados")
 
             Return result
         End Function
@@ -65,10 +53,17 @@ Namespace SDE
         ''' Permite obtener elementos singulares dentro del SDE
         ''' </summary>
         Public Overridable Function GetByName(ByVal name As String, Optional ByVal connectionNumber As Integer = 0, Optional ByVal Privileges As SDE.SDEPrivileges = SDE.SDEPrivileges.SDEEdit) As T
+            Dim wksp As IFeatureWorkspace = New XML.XMLWorkspaceGetter().GetSingleWorkspace(connectionNumber)
+            If wksp Is Nothing Then Throw New DataException("No se ha provisto ningún workspace")
             Try
-                Return Me.GetByNameList({name}, connectionNumber, Privileges:=Privileges)(0)
+                Dim elem As T = Me.doGetByName(name, wksp)
+                If New PrivilegesValidator(elem).HasPrivileges(Privileges) Then : Return elem
+                Else : Throw New UnauthorizedAccessException("No se tienen permisos suficientes para acceder al elemento")
+                End If
+            Catch ex As UnauthorizedAccessException
+                Throw ex
             Catch ex As Exception
-                Throw New DataException("El/La " & Me.GetElementName() & " " & name & " no se ha encontrado", ex)
+                Throw New DataException("El elemento " & name & " no se ha encontrado", ex)
             End Try
         End Function
 
@@ -82,5 +77,10 @@ Namespace SDE
         Protected Function SanitizeString(ByVal text As String) As String
             Return text.ToLower().Replace("á", "a").Replace("é", "e").Replace("í", "i").Replace("ó", "o").Replace("ú", "u")
         End Function
+
+        ''' <summary>
+        ''' Obtiene los elementos por nombre del SDE
+        ''' </summary>
+        Protected MustOverride Function doGetByName(ByVal name As String, ByVal workspace As IFeatureWorkspace) As T
     End Class
 End Namespace

@@ -23,16 +23,12 @@ Namespace SDE
             Return tables
         End Function
 
-        Protected Overrides Function GetElementName() As String
-            Return "Tabla"
-        End Function
-
-        Protected Overrides Function GetPluralName() As String
-            Return "Tablas"
-        End Function
-
         Protected Overrides Function IsNameEquals(ByVal element As ESRI.ArcGIS.Geodatabase.ITable, ByVal name As String) As Boolean
             Return CType(element, IDataset).Name.ToUpper().Contains(name.ToUpper())
+        End Function
+
+        Protected Overrides Function doGetByName(ByVal name As String, ByVal workspace As ESRI.ArcGIS.Geodatabase.IFeatureWorkspace) As ESRI.ArcGIS.Geodatabase.ITable
+            Return workspace.OpenTable(name)
         End Function
     End Class
 End Namespace
