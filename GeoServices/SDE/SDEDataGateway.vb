@@ -57,7 +57,7 @@ Namespace SDE
             If wksp Is Nothing Then Throw New DataException("No se ha provisto ningún workspace")
             Try
                 Dim elem As T = Me.doGetByName(name, wksp)
-                If New PrivilegesValidator(elem).HasPrivileges(Privileges) Then : Return elem
+                If Me.PermissionsValidation(elem, Privileges) Then : Return elem
                 Else : Throw New UnauthorizedAccessException("No se tienen permisos suficientes para acceder al elemento")
                 End If
             Catch ex As UnauthorizedAccessException
