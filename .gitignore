@@ -1,5 +1,7 @@
 GeoServices/bin
 GeoServices/obj
+GeoServicesSharp/bin
+GeoServicesSharp/obj
 GeoServicesEncryptionManager/bin
 GeoServicesEncryptionManager/obj
 GeoServicesConnectionChecker/bin
