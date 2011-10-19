@@ -88,7 +88,7 @@ Namespace SDE
 
             Dim dataset As IFeatureDataset = datasets.Next
             While Not dataset Is Nothing
-                If TypeOf fclass Is IFeatureClass AndAlso Me.isValid(fclass, Privileges) Then fclasses.Add(dataset)
+                If TypeOf dataset Is IFeatureClass AndAlso Me.isValid(dataset, Privileges) Then fclasses.Add(dataset)
                 If Not dataset.Subsets Is Nothing Then
                     Dim subset As IEnumDataset = dataset.Subsets
                     fclass = Me.getNextFClass(subset, subset.Next)

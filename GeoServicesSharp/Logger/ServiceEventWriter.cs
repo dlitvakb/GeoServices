@@ -12,8 +12,8 @@ namespace GeoServicesSharp.Logger
     /// <remarks>Se debe especificar el nombre de la aplicación en Config.xml</remarks>
     class ServiceEventWriter
     {
-        private static string _source = XML.XMLLogger.Getter.getName() + "Events";
-        private static string _log = XML.XMLLoggerGetter.getName() + "Log";
+        private static string _source = XML.XMLLoggerGetter.GetName() + "Events";
+        private static string _log = XML.XMLLoggerGetter.GetName() + "Log";
 
         private static EventLog checkCreate()
         {
