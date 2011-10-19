@@ -15,8 +15,7 @@ Public Class FeatureClassesGatewayTest
 
     <TestMethod()>
     Public Sub ObtenerFeatureClassPorNombre()
-        Dim FClassTest = New GeoServices.SDE.FeatureClassesGateway().GetAll()(0)
-        Assert.IsTrue(New GeoServices.SDE.FeatureClassesGateway().GetByName(CType(FClassTest, IDataset).Name).AliasName = FClassTest.AliasName)
+        Assert.IsTrue(New GeoServices.SDE.FeatureClassesGateway().GetByName("AH_SDE.FAC_Acu_Tramos").AliasName.Contains("Acueductos"))
     End Sub
 
     <TestMethod()>
